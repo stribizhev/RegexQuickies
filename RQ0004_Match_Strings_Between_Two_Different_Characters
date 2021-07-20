@@ -20,11 +20,11 @@ brackets. In order to match an open square bracket, we type
 
 6
 00:00:18.7 --> 00:00:20.6
-backlash and 
+a backlash and 
 
 7
 00:00:20.6 --> 00:00:23.9
-An open square bracket because it is a special regex metacharacter,
+an open square bracket because it is a special regex metacharacter,
 
 8
 00:00:23.9 --> 00:00:27.9
