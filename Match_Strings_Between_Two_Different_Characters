@@ -1,0 +1,211 @@
+1
+00:00:03.9 --> 00:00:04.7
+Hello.
+
+2
+00:00:04.7 --> 00:00:07.6
+In this video, we are going to learn how to match strings
+
+3
+00:00:07.6 --> 00:00:10.5
+between two different single characters.
+
+4
+00:00:10.5 --> 00:00:14.4
+In this case, let's start with matching strings between square
+
+5
+00:00:14.4 --> 00:00:18.5
+brackets. In order to match an open square bracket, we type
+
+6
+00:00:18.7 --> 00:00:20.6
+backlash and 
+
+7
+00:00:20.6 --> 00:00:23.9
+An open square bracket because it is a special regex metacharacter,
+
+8
+00:00:23.9 --> 00:00:27.9
+and if we don't escape it, it will mark the start
+
+9
+00:00:27.9 --> 00:00:29.0
+of a character class.
+
+10
+00:00:29.2 --> 00:00:36.0
+Next, we might try to use a dot and asterisk pattern
+
+11
+00:00:36.0 --> 00:00:40.3
+to match any zero or more characters other than line break
+
+12
+00:00:40.3 --> 00:00:45.6
+characters as many as possible, and then we type a close
+
+13
+00:00:45.9 --> 00:00:46.9
+square bracket.
+
+14
+00:00:48.1 --> 00:00:51.2
+What we observe is that this pattern overmatches.
+
+15
+00:00:51.8 --> 00:00:53.2
+It matches too much.
+
+16
+00:00:53.6 --> 00:00:55.6
+In order to make it stop.
+
+17
+00:00:55.6 --> 00:01:02.3
+Before the first close square bracket, we can use a lazy quantifier.
+
+18
+00:01:02.3 --> 00:01:07.4
+That is, we add a question mark after the asterisk. Now, 
+
+19
+00:01:07.4 --> 00:01:08.0
+it's much better.
+
+20
+00:01:08.0 --> 00:01:12.8
+Look, we have expected matches in the first line.
+
+21
+00:01:12.9 --> 00:01:18.2
+In the second line, we see that we actually match one or
+
+22
+00:01:18.2 --> 00:01:21.2
+more open square brackets.
+
+23
+00:01:21.8 --> 00:01:27.0
+If we don't want this, we can use a negated character class
+
+24
+00:01:27.0 --> 00:01:32.4
+instead of the lazy dot pattern. In order to create a negated
+
+25
+00:01:32.4 --> 00:01:33.1
+character class,
+
+26
+00:01:33.6 --> 00:01:35.8
+we use the square brackets as usual.
+
+27
+00:01:35.9 --> 00:01:41.1
+Then we use the caret symbol and then we put close and
+
+28
+00:01:41.1 --> 00:01:44.9
+open square brackets inside and add a quantifier.
+
+29
+00:01:44.9 --> 00:01:48.7
+In this case, an asterisk. It will match zero or more characters
+
+30
+00:01:48.7 --> 00:01:51.8
+other than open and square brackets.
+
+31
+00:01:52.3 --> 00:01:56.9
+Note that in some regex flavors you will still need to escape
+
+32
+00:01:56.9 --> 00:02:00.0
+these characters inside the negated character class.
+
+33
+00:02:00.3 --> 00:02:04.0
+And now you can see that we match the innermost strings between
+
+34
+00:02:04.0 --> 00:02:06.1
+two square brackets.
+
+35
+00:02:06.5 --> 00:02:12.4
+Now, if we want to extract those substrings in between the
+
+36
+00:02:12.4 --> 00:02:18.4
+brackets, we can use a capturing group and you can see your
+
+37
+00:02:18.4 --> 00:02:20.9
+code on the "Code Generator" page.
+
+38
+00:02:21.9 --> 00:02:26.1
+Now, if you want to match strings in between round brackets,
+
+39
+00:02:26.4 --> 00:02:31.7
+you can change the square brackets with round brackets.
+
+40
+00:02:31.9 --> 00:02:36.8
+Don't forget to escape the trailing round bracket because
+
+41
+00:02:37.0 --> 00:02:41.5
+if you don't do it, you'll have an invalid regex pattern.
+
+42
+00:02:41.7 --> 00:02:45.0
+This is just because this is a special regex metacharacter
+
+43
+00:02:45.0 --> 00:02:48.4
+and it must be escaped when used outside of character classes.
+
+44
+00:02:49.4 --> 00:02:53.7
+If you want to match strings in between angle brackets, just
+
+45
+00:02:53.7 --> 00:02:57.2
+use angle brackets instead of Brown brackets, and
+
+46
+00:02:57.2 --> 00:02:58.1
+do not escape anything.
+
+47
+00:02:58.1 --> 00:03:01.6
+Because angle brackets are not special regex meta characters,
+
+48
+00:03:01.8 --> 00:03:03.3
+you don't have to escape them.
+
+49
+00:03:04.3 --> 00:03:06.9
+Now you can see the explanation of the pattern on the right,
+
+50
+00:03:07.1 --> 00:03:10.6
+you can read more about the regex constructs used in this video
+
+51
+00:03:10.6 --> 00:03:15.1
+using the links below, and if you liked my video,
+
+52
+00:03:15.2 --> 00:03:18.2
+click "Like" and subscribe to my channel if you haven't done it yet.
+
+53
+00:03:18.3 --> 00:03:19.6
+Happy regexing.
