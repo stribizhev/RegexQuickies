@@ -1,0 +1,103 @@
+1
+00:00:03.9 --> 00:00:06.8
+Hello in this video, we are going to learn how to extract
+
+2
+00:00:06.9 --> 00:00:09.2
+a sequence of digits after a specific substring.
+
+3
+00:00:09.3 --> 00:00:14.4
+In this case, the requirement is to extract a number after "id-"
+
+4
+00:00:15.1 --> 00:00:20.0
+substring, so we type "id-" without escaping the hyphen
+
+5
+00:00:20.0 --> 00:00:23.6
+because it's a simple, regular character, it's only special
+
+6
+00:00:23.6 --> 00:00:24.8
+inside square brackets.
+
+7
+00:00:24.8 --> 00:00:29.7
+And then we match the number using "\d+"
+
+8
+00:00:29.7 --> 00:00:30.7
+to match one or more digits.
+
+9
+00:00:30.9 --> 00:00:36.5
+Now we need to exclude "id-", and we can either use a
+
+10
+00:00:36.5 --> 00:00:40.1
+positive look behind that matches a location that is immediately
+
+11
+00:00:40.1 --> 00:00:41.7
+preceded with "id-".
+
+12
+00:00:42.0 --> 00:00:47.9
+Or we can use the "\K" operator that omits the text
+
+13
+00:00:47.9 --> 00:00:53.7
+matched so far with the current regex, so "id-" would be just excluded
+
+14
+00:00:53.9 --> 00:00:56.4
+and only numbers will land in the results.
+
+15
+00:00:56.7 --> 00:01:01.9
+Or we can use a capturing group, a pair of unescaped parentheses
+
+16
+00:01:01.9 --> 00:01:03.3
+around "\d+".
+
+17
+00:01:03.4 --> 00:01:08.2
+You can see these matches are highlighted in different color
+
+18
+00:01:08.2 --> 00:01:14.3
+at regex101.com. Well, whenever you need help with the right
+
+19
+00:01:14.3 --> 00:01:19.6
+code, click the "Code Generator" under the "Tools" section on
+
+20
+00:01:19.6 --> 00:01:24.6
+the left and check the language that you are interested in.
+
+21
+00:01:25.5 --> 00:01:28.3
+See the regex explanation on the right.
+
+21
+00:01:28.4 --> 00:01:32.0
+Follow the additional links here to learn more about regex
+
+22
+00:01:32.0 --> 00:01:35.5
+constructs used this video, and if you like the video,
+
+23
+00:01:35.5 --> 00:01:40.2
+please click "Like" and subscribe to the channel if you haven't
+
+24
+00:01:40.2 --> 00:01:40.8
+done it yet.
+
+25
+00:01:41.1 --> 00:01:42.8
+Happy regexing!
