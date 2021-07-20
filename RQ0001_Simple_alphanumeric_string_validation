@@ -1,0 +1,120 @@
+1
+00:00:03.9 --> 00:00:07.1
+Hello, in this exercise, we're going to validate some specific
+
+2
+00:00:07.1 --> 00:00:08.7
+alphanumeric string format.
+
+3
+00:00:08.8 --> 00:00:10.8
+I'm using Regex101.com.
+
+4
+00:00:10.9 --> 00:00:13.1
+Now, let's look at the requirements.
+
+5
+00:00:13.1 --> 00:00:16.2
+The strings should start with one or two uppercase letters,
+
+6
+00:00:16.4 --> 00:00:21.0
+then some five digits should follow
+
+7
+00:00:21.0 --> 00:00:23.6
+and nothing else can follow those digits.
+
+8
+00:00:23.9 --> 00:00:26.7
+So, let's start building the pattern.
+
+9
+00:00:26.7 --> 00:00:30.4
+We want to make sure we are starting at the start of the string
+
+10
+00:00:30.4 --> 00:00:32.5
+and we're using the caret anchor.
+
+11
+00:00:33.1 --> 00:00:35.4
+Next, we match the uppercase letters.
+
+12
+00:00:35.7 --> 00:00:39.2
+We don't use the plus quantifier because it means one or
+
+13
+00:00:39.2 --> 00:00:39.9
+more occurrences.
+
+14
+00:00:40.0 --> 00:00:42.7
+We don't use the asterisk because it matches zero or more
+
+15
+00:00:42.7 --> 00:00:45.2
+occurrencies. We use a limiting quantifier.
+
+16
+00:00:45.7 --> 00:00:49.7
+That matches one up to two occurrences of uppercase letters
+
+17
+00:00:49.7 --> 00:00:50.8
+at the start of the string.
+
+18
+00:00:50.9 --> 00:00:56.1
+Next, we match the digits and we match them five times using
+
+19
+00:00:56.1 --> 00:00:57.6
+this limiting quantifier.
+
+20
+00:00:57.8 --> 00:01:00.6
+We don't have to spell out like this.
+
+21
+00:01:00.6 --> 00:01:05.2
+No, we just use this and we match the end of the string now
+
+22
+00:01:05.2 --> 00:01:06.9
+using the dollar anchor.
+
+
+23
+00:01:07.7 --> 00:01:08.4
+So this is it.
+
+24
+00:01:08.6 --> 00:01:09.8
+This is our pattern.
+
+25
+00:01:09.8 --> 00:01:12.8
+You can have a look at its explanation on the right.
+
+26
+00:01:13.0 --> 00:01:17.1
+You may read more about the constructs used here using the
+
+27
+00:01:17.1 --> 00:01:18.1
+links below.
+
+28
+00:01:18.8 --> 00:01:19.5
+And that's all.
+
+29
+00:01:19.6 --> 00:01:22.8
+If you like the video, please don't forget to like it.
+
+30
+00:01:22.9 --> 00:01:24.4
+And click Subscribe.
