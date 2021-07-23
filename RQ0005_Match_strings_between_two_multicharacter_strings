@@ -1,0 +1,263 @@
+1
+00:00:03.9 --> 00:00:04.7
+Hello.
+
+2
+00:00:04.7 --> 00:00:08.0
+In this video we're going to learn how to match strings between
+
+3
+00:00:08.0 --> 00:00:09.3
+two multicharacter strings.
+
+4
+00:00:09.4 --> 00:00:12.0
+Let's take "start" and "end" as an example.
+
+5
+00:00:12.4 --> 00:00:14.4
+Let's start with a simple pattern first.
+
+6
+00:00:14.4 --> 00:00:18.7
+So, let's try to match any string between "start" and "end".
+
+7
+00:00:18.9 --> 00:00:23.1
+You see that we have got two matches and they both start
+
+8
+00:00:23.2 --> 00:00:24.6
+with the leftmost occurrence
+
+9
+00:00:24.6 --> 00:00:28.5
+of "start" and the rightmost occurrence of "end" in both cases.
+
+10
+00:00:29.3 --> 00:00:34.3
+If we want to match up to the leftmost occurrence of "end",
+
+11
+00:00:34.8 --> 00:00:38.0
+it means up to the first occurrence of "end", we should use
+
+12
+00:00:38.1 --> 00:00:39.0
+a lazy quantifier.
+
+13
+00:00:39.0 --> 00:00:42.7
+We should use a question mark after the asterisk.
+
+14
+00:00:42.7 --> 00:00:44.2
+Now, we have got four matches.
+
+15
+00:00:45.2 --> 00:00:50.0
+However, you can see that the second match has got another
+
+16
+00:00:50.0 --> 00:00:51.1
+"start" in between.
+
+17
+00:00:51.5 --> 00:00:55.1
+What if we want to match the innermost strings between "start"
+
+18
+00:00:55.2 --> 00:01:00.2
+and "end" with no "start" and "end" in between? We can use a tempered
+
+19
+00:01:00.2 --> 00:01:01.0
+greedy token.
+
+20
+00:01:01.5 --> 00:01:10.9
+Look, we use a non-capturing group and a dot inside that
+
+21
+00:01:11.1 --> 00:01:15.5
+cannot be the starting point of the left delimiter.
+
+22
+00:01:15.6 --> 00:01:20.4
+We actually match any character but a line break character
+
+23
+00:01:20.4 --> 00:01:24.5
+with a dot, zero or more times, but as few times as possible.
+
+24
+00:01:24.5 --> 00:01:31.0
+with this lazy quantifier that does not start a "start" character
+
+25
+00:01:31.0 --> 00:01:35.8
+sequence. And we see we've got the expected matches between
+
+26
+00:01:35.8 --> 00:01:38.7
+"start" and "end" with no "start" in between.
+
+27
+00:01:38.9 --> 00:01:44.8
+You can actually replace this pattern with a greedy pattern.
+
+28
+00:01:45.2 --> 00:01:49.9
+If you also include the right-hand delimiter into the negative
+
+29
+00:01:49.9 --> 00:01:50.5
+lookahead.
+
+30
+00:01:50.6 --> 00:01:53.9
+Now, what if your matches span across multiple lines?
+
+31
+00:01:54.1 --> 00:01:58.0
+The dot doesn't match a line break character by default.
+
+32
+00:01:57.9 --> 00:02:03.9
+You need to add the "s" flag, a singleline flag, and now you
+
+33
+00:02:03.9 --> 00:02:07.0
+can see that there is a match with line breaks.
+
+34
+00:02:07.4 --> 00:02:13.8
+If you can't use the singleline modifier or an inline version
+
+35
+00:02:13.8 --> 00:02:19.0
+like this, you may replace the dot with a common workaround
+
+36
+00:02:19.0 --> 00:02:24.4
+pattern like this, any word and non-word character in a character
+
+37
+00:02:24.4 --> 00:02:30.7
+class or any whitespace and non-whitespace character, or any digit and any
+
+38
+00:02:30.7 --> 00:02:31.8
+non-digit character.
+
+39
+00:02:31.8 --> 00:02:35.8
+Now, what if you want to make sure your "start" and "end" words
+
+40
+00:02:35.8 --> 00:02:39.2
+are actually whole words, not part of other words?
+
+41
+00:02:39.5 --> 00:02:41.7
+You can use word boundaries.
+
+42
+00:02:41.7 --> 00:02:44.6
+"\b" around each word.
+
+43
+00:02:49.8 --> 00:02:54.2
+You can use an expression like this, or you can factor in
+
+44
+00:02:54.2 --> 00:02:58.4
+the word boundaries by using another non-capturing group
+
+45
+00:01:57.9 --> 00:02:03.9
+You need to add the "s" flag, a singleline flag, and now you
+
+46
+00:02:03.9 --> 00:02:07.0
+can see that there is a match with line breaks.
+
+47
+00:02:07.4 --> 00:02:13.8
+If you can't use the singleline modifier or an inline version
+
+48
+00:02:13.8 --> 00:02:19.0
+like this, you may replace the dot with a common workaround
+
+49
+00:02:19.0 --> 00:02:24.4
+pattern like this, any word and non-word character in a character
+
+50
+00:02:24.4 --> 00:02:30.7
+class or any whitespace and non-whitespace character, or any digit and any
+
+51
+00:02:30.7 --> 00:02:31.8
+non-digit character.
+
+52
+00:02:31.8 --> 00:02:35.8
+Now, what if you want to make sure your "start" and "end" words
+
+53
+00:02:35.8 --> 00:02:39.2
+are actually whole words, not part of other words?
+
+54
+00:02:39.5 --> 00:02:41.7
+You can use word boundaries.
+
+55
+00:02:41.7 --> 00:02:44.6
+"\b" around each word.
+
+56
+00:02:49.8 --> 00:02:54.2
+You can use an expression like this, or you can factor in
+
+57
+00:02:54.2 --> 00:02:58.4
+the word boundaries by using another non-capturing group
+
+58
+00:02:58.4 --> 00:03:02.1
+here. If you want to see how this expression can be used
+
+59
+00:03:02.1 --> 00:03:05.8
+in your code, please check out the "Code Generator" page and
+
+60
+00:03:05.8 --> 00:03:07.7
+select the language you are interested in.
+
+61
+00:03:08.4 --> 00:03:11.9
+Now, you can see the explanation of the pattern on the right,
+
+62
+00:03:12.0 --> 00:03:15.2
+you can read more about the regex constructs used in this
+
+63
+00:03:15.2 --> 00:03:18.7
+video by following the links in the "FURTHER LINKS" section,
+
+64
+00:03:18.8 --> 00:03:22.1
+and if you liked my video, please click "Like" and subscribe
+
+65
+00:03:22.1 --> 00:03:23.7
+to my channel if you haven't done it yet.
+
+66
+00:03:23.7 --> 00:03:24.9
+Happy regexing.
