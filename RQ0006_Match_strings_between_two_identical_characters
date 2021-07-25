@@ -1,0 +1,191 @@
+1
+00:00:03.9 --> 00:00:07.1
+Hello, in this video we are going to learn how to match strings
+
+2
+00:00:07.1 --> 00:00:09.0
+in between two identical characters.
+
+3
+00:00:09.2 --> 00:00:11.7
+In this case, let's take double quotes.
+
+4
+00:00:12.5 --> 00:00:19.2
+If we use a very simple pattern like this, a double quote, greedy
+
+5
+00:00:19.2 --> 00:00:23.4
+dot and a double quote, we see that we match from the leftmost
+
+6
+00:00:23.6 --> 00:00:26.1
+occurrence of a double quote in a string up to the
+
+7
+00:00:26.4 --> 00:00:28.9
+rightmost occurrence of the double quote.
+
+8
+00:00:29.3 --> 00:00:30.9
+So we match too much.
+
+9
+00:00:31.2 --> 00:00:35.8
+If we use a lazy quantifier with a dot, we can match all
+
+10
+00:00:35.8 --> 00:00:40.1
+occurrences of double quoted substrings in a longer string.
+
+11
+00:00:41.4 --> 00:00:45.8
+However, we can see that we missed out on this match that
+
+12
+00:00:45.9 --> 00:00:46.9
+contains a line break.
+
+13
+00:00:47.1 --> 00:00:51.5
+It happens because the dot doesn't match line breaks by default.
+
+14
+00:00:51.5 --> 00:00:59.0
+So, you could either use the /s, singleline modifier
+
+15
+00:00:59.7 --> 00:01:04.7
+or you could use an inline version of a singleline modifier.
+
+16
+00:01:05.6 --> 00:01:11.3
+Or, better, you can use a negated character class that matches
+
+17
+00:01:11.3 --> 00:01:14.1
+any character but a double quotation mark.
+
+18
+00:01:14.3 --> 00:01:17.2
+Now, you can see that we've got all expected matches.
+
+19
+00:01:17.2 --> 00:01:20.9
+However, we see that the double quotes are included in the match.
+
+20
+00:01:20.9 --> 00:01:24.3
+What if you want to exclude the double quotes from
+
+21
+00:01:24.3 --> 00:01:24.8
+the matches?
+
+22
+00:01:25.0 --> 00:01:29.9
+We could try using lookarounds, but in this case we cannot
+
+23
+00:01:29.9 --> 00:01:30.6
+rely on them.
+
+24
+00:01:30.7 --> 00:01:31.5
+Have a look.
+
+25
+00:01:32.0 --> 00:01:36.7
+We use a positive lookbehind at the beginning and a positive
+
+26
+00:01:36.7 --> 00:01:37.6
+lookahead at the end.
+
+27
+00:01:37.8 --> 00:01:40.8
+And we've got so many more matches.
+
+28
+00:01:40.8 --> 00:01:46.9
+now, just because lookarounds do not consume the text they match.
+
+29
+00:01:47.0 --> 00:01:53.3
+When we come here, at this place before "1", we match
+
+30
+00:01:53.3 --> 00:01:58.3
+this position right after a double quotation mark,
+
+31
+00:01:58.3 --> 00:02:01.9
+the negated character class matches "1" and the lookahead
+
+32
+00:02:01.9 --> 00:02:06.9
+finds a double quote immediately to the right of "1" and
+
+33
+00:02:06.9 --> 00:02:08.4
+there is a match.
+
+34
+00:02:08.4 --> 00:02:13.9
+Next, the position after this second double quote is found because
+
+35
+00:02:14.2 --> 00:02:21.0
+it was not consumed and the lookbehind actually matches
+
+36
+00:02:21.0 --> 00:02:25.0
+this position and the negated character class matches the
+
+37
+00:02:25.0 --> 00:02:29.1
+space text space up to the next double quotation mark.
+
+38
+00:02:29.7 --> 00:02:31.9
+We cannot rely on lookarounds here.
+
+39
+00:02:31.9 --> 00:02:41.1
+We can only use capturing groups like this and all you need
+
+40
+00:02:41.1 --> 00:02:43.7
+is to access Group 1 value.
+
+41
+00:02:44.1 --> 00:02:47.7
+You can check the code on the "Code Generator" page.
+
+42
+00:02:47.8 --> 00:02:49.8
+Just select the language you're interested in.
+
+43
+00:02:51.6 --> 00:02:54.9
+Now, you can see the explanation of the pattern on the right,
+
+44
+00:02:54.9 --> 00:02:57.9
+you can read more about the regex constructs used in this
+
+45
+00:02:57.9 --> 00:03:00.4
+video by following the links in this regex fiddle,
+
+46
+00:03:00.6 --> 00:03:04.0
+and if you liked my video, please click "Like" and subscribe
+
+47
+00:03:04.0 --> 00:03:05.6
+to my channel if you haven't done it yet.
+
+48
+00:03:05.6 --> 00:03:06.9
+Happy regexing!
