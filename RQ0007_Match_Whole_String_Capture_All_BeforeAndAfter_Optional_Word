@@ -1,0 +1,143 @@
+1
+00:00:03.9 --> 00:00:04.7
+Hello.
+
+2
+00:00:04.7 --> 00:00:07.7
+In this video, we are going to match a string and capture
+
+3
+00:00:07.7 --> 00:00:10.3
+any text before and after an optional word.
+
+4
+00:00:10.6 --> 00:00:12.5
+The word can be "abc",
+
+5
+00:00:12.6 --> 00:00:16.8
+for example. Try out a very simple pattern that matches any
+
+6
+00:00:16.8 --> 00:00:20.7
+text before "abc" and any text after "abc".
+
+7
+00:00:21.5 --> 00:00:25.5
+Let's capture both greedy dot patterns.
+
+8
+00:00:26.2 --> 00:00:32.1
+Okay, now we see that the first line is matched, but the
+
+9
+00:00:32.1 --> 00:00:33.9
+second line is not matched.
+
+10
+00:00:34.0 --> 00:00:39.9
+We actually want to get everything into the first capturing
+
+11
+00:00:39.9 --> 00:00:43.7
+group. Let's add anchors to the pattern, the caret anchor,
+
+12
+00:00:43.7 --> 00:00:46.8
+meaning the start of string, and a dollar anchor, the end
+
+13
+00:00:46.8 --> 00:00:47.3
+of string.
+
+14
+00:00:48.3 --> 00:00:52.5
+Now, we need to make sure "abc" and the subsequent capturing
+
+15
+00:00:52.5 --> 00:00:54.0
+group are optional.
+
+16
+00:00:54.4 --> 00:00:58.0
+In order to make part of a regex optional, we need to wrap
+
+17
+00:00:58.0 --> 00:01:02.4
+it with a non-capturing group and make it optional using
+
+18
+00:01:02.4 --> 00:01:06.9
+the question mark quantifier. Let's make a small trick and
+
+19
+00:01:06.9 --> 00:01:12.8
+only match lines that start with a greater than symbol.
+
+20
+00:01:13.2 --> 00:01:16.5
+We can see that the second line is matched correctly, but
+
+21
+00:01:16.5 --> 00:01:22.4
+the first line got captured fully into Group 1. To make sure
+
+22
+00:01:22.4 --> 00:01:25.7
+our optional capturing group is tried at least once
+
+23
+00:01:25.7 --> 00:01:29.6
+with the regex engine, we should make that first capturing
+
+24
+00:01:29.7 --> 00:01:32.9
+group pattern lazy by adding a question mark.
+
+25
+00:01:33.0 --> 00:01:37.0
+Now, you can see that we capture the text before and the text
+
+26
+00:01:37.2 --> 00:01:41.6
+after into the appropriate and expected capturing groups.
+
+27
+00:01:41.6 --> 00:01:45.1
+Don't forget that if your matches span across multiple lines,
+
+28
+00:01:45.1 --> 00:01:47.1
+you need to use the "s" flag.
+
+29
+00:01:48.9 --> 00:01:53.0
+If you need help with the code, just go to the "Code Generator"
+
+30
+00:01:53.0 --> 00:01:55.5
+page and select the language you're interested in.
+
+31
+00:01:56.0 --> 00:01:59.5
+You can read the explanation of the pattern on the right,
+
+32
+00:01:59.8 --> 00:02:03.1
+you can read more about the regex constructs used in this video
+
+33
+00:02:03.1 --> 00:02:06.5
+by following the links in the "FURTHER LINKS" section and if
+
+34
+00:02:06.5 --> 00:02:09.0
+you liked my video, click "Like" and subscribe to my channel
+
+35
+00:02:09.0 --> 00:02:10.0
+if you haven't done it yet.
+
+36
+00:02:10.0 --> 00:02:11.1
+Happy regexing.
