@@ -1,0 +1,127 @@
+1
+00:00:03.9 --> 00:00:04.6
+Hello.
+
+2
+00:00:04.6 --> 00:00:07.2
+In this video we're going to learn how to match overlapping
+
+3
+00:00:07.2 --> 00:00:09.5
+occurrences of a substring in a longer string.
+
+4
+00:00:09.7 --> 00:00:13.6
+Let's take, for example, all strings that start with "2",
+
+5
+00:00:13.8 --> 00:00:17.6
+then can have zero or more "0"s and end with "2".
+
+6
+00:00:17.7 --> 00:00:19.2
+Let's have a look at our string.
+
+7
+00:00:19.5 --> 00:00:24.7
+We expect two matches here, from the first to the fourth and
+
+8
+00:00:24.7 --> 00:00:27.2
+from the fourth to the last characters.
+
+9
+00:00:27.4 --> 00:00:32.6
+We see that this "2" will be shared between the two matches.
+
+10
+00:00:33.0 --> 00:00:40.2
+If we match the first pattern with "20*2", we can
+
+11
+00:00:40.3 --> 00:00:42.0
+see that we only get one match.
+
+12
+00:00:42.6 --> 00:00:47.5
+In order to get the second match, we need to use a positive
+
+13
+00:00:47.5 --> 00:00:48.1
+lookahead.
+
+14
+00:00:48.5 --> 00:00:51.9
+We now see that we've got two matches.
+
+15
+00:00:51.9 --> 00:00:54.0
+You can see it in the "MATCH INFORMATION" window.
+
+16
+00:00:54.2 --> 00:00:55.7
+In the "MATCH INFORMATION" window,
+
+17
+00:00:55.7 --> 00:00:59.2
+you can see that we have got two matches, but the text values
+
+18
+00:00:59.2 --> 00:01:02.7
+are empty because we didn't get the text itself.
+
+19
+00:01:02.9 --> 00:01:07.7
+In order to get the text, we need to capture the pattern
+
+20
+00:01:07.7 --> 00:01:09.3
+inside the positive lookahead.
+
+21
+00:01:09.4 --> 00:01:13.3
+Once you capture them, you have access to those values inside
+
+22
+00:01:13.3 --> 00:01:14.0
+Group 1.
+
+23
+00:01:14.7 --> 00:01:18.8
+Note that this technique is possible with regex flavors that
+
+24
+00:01:18.8 --> 00:01:20.8
+support positive lookaheads.
+
+25
+00:01:21.0 --> 00:01:24.4
+You can see the code snippets on the "Code Generator" page,
+
+26
+00:01:24.4 --> 00:01:26.7
+just select the language you're interested in.
+
+27
+00:01:26.9 --> 00:01:29.7
+You can see the explanation of the pattern on the right,
+
+28
+00:01:29.7 --> 00:01:32.5
+you can read more about the implementation of this technique
+
+29
+00:01:32.5 --> 00:01:35.1
+in various languages following the links in the Further Links
+
+30
+00:01:35.1 --> 00:01:38.2
+section, and if you liked my video, please click "Like" and
+
+31
+00:01:38.2 --> 00:01:40.1
+subscribe to my channel if you haven't done it yet.
+
+32
+00:01:40.2 --> 00:01:41.3
+Happy regexing.
