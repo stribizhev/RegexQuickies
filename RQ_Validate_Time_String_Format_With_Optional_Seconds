@@ -1,0 +1,151 @@
+1
+00:00:03.8 --> 00:00:06.8
+Hello, in this video, we are going to validate a 24 hour
+
+2
+00:00:06.9 --> 00:00:11.7
+time string format, with optional seconds part and optional
+
+3
+00:00:11.7 --> 00:00:15.0
+leading zeros in both three parts of the regex.
+
+4
+00:00:15.0 --> 00:00:18.7
+Let's start with a caret anchor, which means the start of string.
+
+5
+00:00:19.6 --> 00:00:24.4
+Then we'll use a non-capturing group to match numbers from
+
+6
+00:00:25.3 --> 00:00:32.2
+0 to 19 or from 20 to 23.
+
+7
+00:00:32.8 --> 00:00:35.6
+Next we're going to match the minutes part.
+
+8
+00:00:36.5 --> 00:00:38.3
+Let's type a colon.
+
+9
+00:00:39.2 --> 00:00:43.5
+We'll match any number from 0 to 5 followed by any digit,
+
+10
+00:00:45.2 --> 00:00:49.0
+and we'll repeat this pattern to match the seconds part.
+
+11
+00:00:49.6 --> 00:00:53.3
+Now all we need to add is the dollar anchor, which means
+
+12
+00:00:53.3 --> 00:00:54.1
+the end of string.
+
+13
+00:00:54.2 --> 00:00:57.9
+Now you see that we've got three matches out of the expected
+
+14
+00:00:57.9 --> 00:01:02.5
+six. Let's make the seconds part optional by wrapping it with
+
+15
+00:01:02.6 --> 00:01:07.8
+a non-capturing group and adding a question mark right after
+
+16
+00:01:07.8 --> 00:01:11.1
+in order to make this group patterns optional.
+
+17
+00:01:11.2 --> 00:01:14.5
+Now you see, we've got six expected matches.
+
+18
+00:01:14.8 --> 00:01:21.0
+If we want to make leading zeroes optional, we should make
+
+19
+00:01:21.0 --> 00:01:25.5
+the first digit (pattern) in both three parts of the regex optional
+
+20
+00:01:25.5 --> 00:01:29.1
+by adding the question mark right after that part.
+
+21
+00:01:31.3 --> 00:01:34.8
+And now you see we've got all the matches we want.
+
+22
+00:01:35.5 --> 00:01:39.4
+If you have trouble writing regular expressions that match
+
+23
+00:01:39.4 --> 00:01:47.1
+numeric ranges, we can go to this StackOverflow question, go
+
+24
+00:01:47.2 --> 00:01:51.9
+to the bottom of the answer, click "Run code snippet", and type
+
+25
+00:01:51.9 --> 00:01:57.6
+the numbers in the text boxes to get the numeric range regular
+
+26
+00:01:57.6 --> 00:02:00.4
+expression. Also, check the options below.
+
+27
+00:02:00.4 --> 00:02:03.8
+If you need something like that, like matching whole string
+
+28
+00:02:03.8 --> 00:02:07.1
+or matching within word boundaries, just select those options
+
+29
+00:02:07.5 --> 00:02:09.3
+and click "Generate".
+
+30
+00:02:09.3 --> 00:02:13.3
+If you need help with the code to run the regex in, you may go to
+
+31
+00:02:13.4 --> 00:02:16.8
+the "Tools" section, click "Code Generator" link and select
+
+32
+00:02:16.8 --> 00:02:18.2
+the language you're interested in.
+
+33
+00:02:18.4 --> 00:02:21.5
+Now you can read the explanation of the pattern on the right,
+
+34
+00:02:21.9 --> 00:02:26.3
+you can learn more about the notions explained in this video
+
+35
+00:02:26.7 --> 00:02:29.1
+by following the links in the FURTHER LINKS section,
+
+36
+00:02:29.5 --> 00:02:32.5
+and if you liked my video, please click "Like" and subscribe
+
+37
+00:02:32.5 --> 00:02:34.0
+to my channel if you haven't done it yet.
+
+38
+00:02:34.1 --> 00:02:35.3
+Happy regexing.
