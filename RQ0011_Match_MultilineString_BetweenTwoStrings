@@ -1,0 +1,139 @@
+1
+00:00:03.9 --> 00:00:04.5
+Hello.
+
+2
+00:00:04.5 --> 00:00:07.1
+In this video we are going to learn how to match a multiline
+
+3
+00:00:07.1 --> 00:00:08.3
+string between two strings.
+
+4
+00:00:08.6 --> 00:00:12.2
+In other words, how can we get a match across lines?
+
+5
+00:00:13.0 --> 00:00:17.9
+Let's try and match a string between a doller symbol,
+
+6
+00:00:17.9 --> 00:00:23.7
+and open brace up to the leftmost occurrence of the close brace
+
+7
+00:00:23.7 --> 00:00:24.6
+and a dollar sign.
+
+8
+00:00:24.8 --> 00:00:27.9
+You can see that we have got only one match here.
+
+9
+00:00:28.1 --> 00:00:30.5
+We want to get the second match, too.
+
+10
+00:00:31.1 --> 00:00:34.7
+In order to match the first string, we should use the
+
+11
+00:00:34.7 --> 00:00:36.8
+"dotall modifier", or "s" flag.
+
+12
+00:00:37.3 --> 00:00:39.1
+It's called "singleline" here.
+
+13
+00:00:39.6 --> 00:00:42.0
+Now, you can see we've got both matches.
+
+14
+00:00:42.5 --> 00:00:47.8
+Another way to achieve the same effect is by using the inline
+
+15
+00:00:47.8 --> 00:00:48.8
+modifier flag.
+
+16
+00:00:51.0 --> 00:00:57.7
+Moreover, if your regex flavor doesn't support the "s" flag
+
+17
+00:00:57.7 --> 00:01:01.9
+you can use a work-around pattern like this.
+
+18
+00:01:02.3 --> 00:01:07.3
+You can match any whitespace or non-whitespace, and this
+
+19
+00:01:07.3 --> 00:01:11.2
+construct matches any characters, including linebreak characters.
+
+20
+00:01:11.4 --> 00:01:16.3
+Note that the ECMAScript regex flavor also supports another 
+
+21
+00:01:16.3 --> 00:01:18.6
+construct that matches any characters, including line breaks.
+
+22
+00:01:18.8 --> 00:01:22.3
+That is, a caret inside square brackets.
+
+23
+00:01:22.6 --> 00:01:25.1
+It means "match any character".
+
+24
+00:01:25.1 --> 00:01:28.2
+Note that I'm using a lazy quantifier here in order to match
+
+25
+00:01:28.2 --> 00:01:31.9
+as few characters as possible between the two parts of the
+
+26
+00:01:31.9 --> 00:01:32.7
+regular expression.
+
+27
+00:01:32.9 --> 00:01:35.8
+If you want to implement the regex in your code, you may have
+
+28
+00:01:35.8 --> 00:01:38.9
+a glimpse at the "Code Generator" page and select the language
+
+29
+00:01:38.9 --> 00:01:40.0
+that you're interested in.
+
+30
+00:01:40.1 --> 00:01:42.3
+Now, you can see the explanation of the pattern on the right,
+
+31
+00:01:42.3 --> 00:01:45.8
+you can read more about matching multiline blocks of texts
+
+32
+00:01:45.8 --> 00:01:47.9
+by following the links in the "FURTHER LINKS" section,
+
+33
+00:01:48.0 --> 00:01:50.3
+and if you liked my video, please click "Like" and subscribe
+
+34
+00:01:50.3 --> 00:01:50.9
+to my channel
+
+35
+00:01:50.9 --> 00:01:52.7
+if you haven't done it yet. Happy regexing!
