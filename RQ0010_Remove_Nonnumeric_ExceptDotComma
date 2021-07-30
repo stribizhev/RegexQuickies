@@ -1,0 +1,115 @@
+1
+00:00:03.9 --> 00:00:04.3
+Hello.
+
+2
+00:00:04.3 --> 00:00:07.0
+In this video we're going to learn how to remove any
+
+3
+00:00:07.0 --> 00:00:10.8
+non-numeric characters but dots and commas from a string.
+
+4
+00:00:11.1 --> 00:00:14.2
+It's very helpful when you know that your string only contains
+
+5
+00:00:14.2 --> 00:00:16.5
+a single integer or float number.
+
+6
+00:00:16.7 --> 00:00:18.9
+Let's start with isolating our test cases.
+
+7
+00:00:20.9 --> 00:00:23.2
+Now, let's build a pattern.
+
+8
+00:00:24.2 --> 00:00:30.6
+We want to match any characters but digits, dots and commas.
+
+9
+00:00:30.9 --> 00:00:33.4
+Let them repeat one or more times.
+
+10
+00:00:34.5 --> 00:00:37.6
+We also matched newline characters.
+
+11
+00:00:37.7 --> 00:00:40.7
+Let's exclude them by typing "\n" in the pattern.
+
+12
+00:00:41.4 --> 00:00:43.8
+Let's switch to the "Substitution" view.
+
+13
+00:00:44.1 --> 00:00:46.8
+You can see we've got our expected results.
+
+14
+00:00:47.1 --> 00:00:50.7
+Now you can make the pattern a bit shorter if you replace
+
+15
+00:00:50.7 --> 00:00:56.5
+"0-9" with "\d". Please mind that "\d"
+
+16
+00:00:56.9 --> 00:01:01.3
+is not always identical to "[0-9]" pattern.
+
+17
+00:01:01.5 --> 00:01:06.8
+Please bear in mind that "[0-9]" pattern only matches ASCII digits
+
+18
+00:01:07.1 --> 00:01:11.0
+"\d" can match other Unicode digits as well.
+
+19
+00:01:11.3 --> 00:01:15.6
+It depends on the regex flavor and options you use to compile
+
+20
+00:01:15.6 --> 00:01:16.6
+the regex object.
+
+21
+00:01:17.0 --> 00:01:19.9
+If you need help implementing the regular expression in your
+
+22
+00:01:19.9 --> 00:01:24.2
+code, you may have a glimpse at the "Code Generator" page and
+
+23
+00:01:24.2 --> 00:01:26.1
+select the language you're interested in.
+
+24
+00:01:27.0 --> 00:01:30.3
+Now you can see the explanation of the pattern on the right,
+
+25
+00:01:30.4 --> 00:01:33.4
+you can read more about the constructs used in this video
+
+26
+00:01:33.4 --> 00:01:35.7
+by following the links in the "FURTHER LINKS" section,
+
+27
+00:01:36.2 --> 00:01:39.9
+and if you liked my video, please click "Like" and subscribe
+
+28
+00:01:39.9 --> 00:01:41.5
+to my channel if you haven't done it yet.
+
+29
+00:01:41.5 --> 00:01:42.8
+Happy regexing.
