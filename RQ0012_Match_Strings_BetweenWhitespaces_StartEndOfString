@@ -1,0 +1,167 @@
+1
+00:00:03.9 --> 00:00:04.5
+Hello.
+
+2
+00:00:04.5 --> 00:00:07.1
+In this video we are going to match words in between whitespace
+
+3
+00:00:07.1 --> 00:00:11.2
+characters or words that appear at the start or end of string
+
+4
+00:00:11.2 --> 00:00:13.2
+and have a whitespace on one of the ends.
+
+5
+00:00:13.3 --> 00:00:16.0
+Let's match words that start with the "Word" word.
+
+6
+00:00:16.3 --> 00:00:18.4
+It will make our tests cleaner.
+
+7
+00:00:18.4 --> 00:00:22.1
+Let's match the words starting with a "Word" prefix.
+
+8
+00:00:23.3 --> 00:00:27.1
+You can see we have matched all the words in the test string.
+
+9
+00:00:27.3 --> 00:00:33.9
+We only want to match WordA, WordB and WordE. In order to match
+
+10
+00:00:33.9 --> 00:00:34.4
+those words,
+
+11
+00:00:34.7 --> 00:00:38.9
+we could think of using "\s" construct that matches a whitespace.
+
+12
+00:00:38.9 --> 00:00:42.4
+However, you can see that this pattern only matched
+
+13
+00:00:42.6 --> 00:00:43.8
+two words.
+
+14
+00:00:44.4 --> 00:00:50.5
+It skipped the "WordB" here because this whitespace pattern
+
+15
+00:00:50.5 --> 00:00:58.1
+here matched this space before WordB and the initial whitespace
+
+16
+00:00:58.2 --> 00:01:01.3
+pattern could not match this position any longer.
+
+17
+00:01:01.5 --> 00:01:06.0
+The same problem will appear if you want to match any words
+
+18
+00:01:06.1 --> 00:01:13.4
+at the beginning or end of the string because in this case
+
+19
+00:01:13.4 --> 00:01:16.3
+this space got consumed as well.
+
+20
+00:01:16.5 --> 00:01:20.0
+In this case we need to use lookarounds.
+
+21
+00:01:20.5 --> 00:01:28.2
+We should use a positive lookbehind and a positive lookahead.
+
+22
+00:01:28.2 --> 00:01:32.9
+However, this won't work in Python where the "re" library
+
+23
+00:01:33.0 --> 00:01:36.3
+doesn't allow non-fixed width patterns in lookbehinds.
+
+24
+00:01:36.4 --> 00:01:37.9
+We can use reverse lookarounds.
+
+25
+00:01:37.9 --> 00:01:43.7
+A negative look behind here and a negative lookahead here.
+
+26
+00:01:43.7 --> 00:01:50.7
+These two lookarounds allow matching words starting with
+
+27
+00:01:50.7 --> 00:01:55.4
+a "Word" prefix that appear either at the start of string or
+
+28
+00:01:55.7 --> 00:02:00.6
+right after a whitespace and either end with a whitespace
+
+29
+00:02:00.7 --> 00:02:02.4
+or are at the end of string.
+
+30
+00:02:02.6 --> 00:02:07.4
+Since lookarounds do not consume the text they match
+
+31
+00:02:07.5 --> 00:02:12.6
+the whitespaces on both ends of the matches remain available
+
+32
+00:02:12.6 --> 00:02:14.3
+for the next regex match.
+
+33
+00:02:14.8 --> 00:02:19.6
+This pattern works with every regex flavor that supports
+
+34
+00:02:19.6 --> 00:02:20.7
+lookbehinds and lookaheads.
+
+35
+00:02:20.9 --> 00:02:24.2
+If you need help with a code to implement the regular expression in,
+
+36
+00:02:24.2 --> 00:02:28.4
+go to the "Tools" section and click "Code Generator" and select
+
+37
+00:02:28.4 --> 00:02:29.8
+the language you are interested in.
+
+38
+00:02:30.9 --> 00:02:34.4
+Now you can see the explanation of the pattern on the right,
+
+39
+00:02:34.5 --> 00:02:39.4
+you can read more about this notion using the links in the
+
+40
+00:02:39.4 --> 00:02:42.4
+"FURTHER LINKS" section, and if you liked my video, please click
+
+41
+00:02:42.4 --> 00:02:44.8
+"Like" and subscribe to my channel if you haven't done it yet.
+
+42
+00:02:44.8 --> 00:02:46.1
+Happy regexing.
