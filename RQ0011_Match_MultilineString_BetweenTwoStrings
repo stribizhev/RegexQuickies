@@ -16,7 +16,7 @@ In other words, how can we get a match across lines?
 
 5
 00:00:13.0 --> 00:00:17.9
-Let's try and match a string between a doller symbol,
+Let's try and match a string between a dollar symbol,
 
 6
 00:00:17.9 --> 00:00:23.7
@@ -40,7 +40,7 @@ In order to match the first string, we should use the
 
 11
 00:00:34.7 --> 00:00:36.8
-"dotall modifier", or "s" flag.
+"dotall" modifier, or "s" flag.
 
 12
 00:00:37.3 --> 00:00:39.1
