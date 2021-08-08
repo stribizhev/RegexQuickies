@@ -1,0 +1,279 @@
+1
+00:00:03.9 --> 00:00:04.0
+Hi.
+
+2
+00:00:04.9 --> 00:00:07.9
+In this video, we are going to learn more about backtracking.
+
+3
+00:00:08.0 --> 00:00:12.0
+Whenever a regular expression contains a quantifier like
+
+4
+00:00:12.0 --> 00:00:17.1
+plus or asterisk or a limiting quantifier without the maximum
+
+5
+00:00:17.1 --> 00:00:19.7
+argument, backtracking might come into play.
+
+6
+00:00:20.0 --> 00:00:23.2
+Whenever there is an opportunity for a regex engine to match
+
+7
+00:00:23.2 --> 00:00:27.9
+a string differently, it will explore as many ways as possible
+
+8
+00:00:27.9 --> 00:00:30.8
+in order to deliver a complete match.
+
+9
+00:00:31.1 --> 00:00:34.5
+Whenever a regex engine finds this opportunity, it saves
+
+10
+00:00:34.5 --> 00:00:39.1
+its state in order to come back to it later when it fails
+
+11
+00:00:39.1 --> 00:00:40.5
+to find a complete match.
+
+12
+00:00:40.6 --> 00:00:44.0
+This process of returning to a previous saved state to find
+
+13
+00:00:44.0 --> 00:00:45.6
+a match is known as backtracking.
+
+14
+00:00:45.8 --> 00:00:47.2
+Let's have a look at the example.
+
+15
+00:00:47.2 --> 00:00:50.6
+Let's match the last occurrence of "blah" in this string.
+
+16
+00:00:50.8 --> 00:00:56.8
+We will start with a greedy dot pattern and "blah" word.
+
+17
+00:00:58.0 --> 00:01:02.1
+We can see that we matched all the string up to the last occurrence
+
+18
+00:01:02.1 --> 00:01:04.6
+of "blah" here. Why?
+
+19
+00:01:04.7 --> 00:01:08.2
+ The greedy dot pattern matches all the string
+
+20
+00:01:08.2 --> 00:01:13.1
+to its end first, then it's going to look for "b".
+
+21
+00:01:13.6 --> 00:01:16.6
+As the regex engine doesn't find any "b" at the end of the string,
+
+22
+00:01:16.6 --> 00:01:20.9
+it backtracks further back into the string and goes
+
+23
+00:01:21.2 --> 00:01:27.6
+up to this location where it finds "b" and then it finds "lah"
+
+24
+00:01:28.2 --> 00:01:32.0
+letters right after and delivers a complete match.
+
+25
+00:01:32.7 --> 00:01:34.6
+Let's switch off the global modifier.
+
+26
+00:01:34.6 --> 00:01:37.3
+Now, let's replace "blah" with "123".
+
+27
+00:01:38.4 --> 00:01:41.8
+This pattern matches this string as a whole because "123"
+
+28
+00:01:41.8 --> 00:01:42.9
+is at the end of it.
+
+29
+00:01:42.9 --> 00:01:46.2
+What if we make this pattern lazy?
+
+30
+00:01:46.6 --> 00:01:52.2
+We only match up to the first occurrence of "123".
+
+31
+00:01:52.3 --> 00:01:55.2
+This is expected, but what's going on here?
+
+32
+00:01:55.4 --> 00:02:00.9
+The lazy dot pattern is skipped at first and only "123" is
+
+33
+00:02:01.0 --> 00:02:01.8
+being searched for.
+
+34
+00:02:02.0 --> 00:02:06.1
+So when the regex engine is at the position in front of "7",
+
+35
+00:02:06.8 --> 00:02:10.2
+it tries to find "1", but it can't.
+
+36
+00:02:10.2 --> 00:02:11.0
+There is "7".
+
+37
+00:02:11.2 --> 00:02:16.4
+So this position is failed and "7" is matched (or, consumed)
+
+38
+00:02:16.7 --> 00:02:18.3
+with this lazy dot pattern.
+
+39
+00:02:18.8 --> 00:02:19.7
+It's expanded.
+
+40
+00:02:20.5 --> 00:02:26.8
+Next, there is "8", but "123" can't match at this position.
+
+41
+00:02:27.0 --> 00:02:27.4
+Again,
+
+42
+00:02:27.8 --> 00:02:31.9
+this "8" is consumed by this lazy dot pattern.
+
+43
+00:02:32.0 --> 00:02:33.4
+It's expanded once again.
+
+44
+00:02:33.5 --> 00:02:37.8
+This subpattern expansion goes on until the regex engine
+
+45
+00:02:37.8 --> 00:02:41.2
+comes to this location where it matches "123".
+
+46
+00:02:42.4 --> 00:02:46.0
+You can easily see what the lazy dot matched if you use
+
+47
+00:02:46.0 --> 00:02:47.0
+capturing parentheses.
+
+48
+00:02:49.9 --> 00:02:54.4
+This subpattern expansion is also backtracking because the regex
+
+49
+00:02:54.5 --> 00:02:58.5
+engine is actually going back and forth to deliver a complete
+
+50
+00:02:58.5 --> 00:03:02.2
+match. Now, let's try and match the last number in the string.
+
+51
+00:03:02.4 --> 00:03:06.3
+We can use "\d+" to match one more digits.
+
+52
+00:03:06.7 --> 00:03:11.7
+Let's try the greedy dot pattern and capture the digits.
+
+53
+00:03:11.7 --> 00:03:14.0
+This is a very common mistake.
+
+54
+00:03:14.3 --> 00:03:16.6
+Now you understand why it happens.
+
+55
+00:03:17.0 --> 00:03:21.2
+The greedy dot pattern matches the whole string first.
+
+56
+00:03:21.7 --> 00:03:25.9
+Then it sees that it must match at least one digit.
+
+57
+00:03:26.0 --> 00:03:31.9
+It backtracks and at this position it can match "3" with
+
+58
+00:03:31.9 --> 00:03:37.2
+"\d+" pattern and thus only "3" is captured into the
+
+59
+00:03:37.2 --> 00:03:41.1
+group. In order to capture "123" into the capturing group.
+
+60
+00:03:41.2 --> 00:03:45.6
+you must make sure that the character before this group is
+
+61
+00:03:46.1 --> 00:03:47.9
+not a numeric character.
+
+62
+00:03:49.0 --> 00:03:52.7
+And now you can see that we've got "123" in this group.
+
+63
+00:03:52.8 --> 00:03:56.0
+What if the number is at the beginning of the string?
+
+64
+00:03:58.0 --> 00:04:02.2
+In this case, we should make this pattern optional.
+
+65
+00:04:06.3 --> 00:04:09.8
+Actually, there are other ways to match the first or last
+
+66
+00:04:09.8 --> 00:04:13.8
+occurrence of strings, but we'll cover that in our further
+
+67
+00:04:13.8 --> 00:04:16.7
+videos. If you liked my video, please click "Like" and subscribe
+
+68
+00:04:16.7 --> 00:04:17.2
+to my channel
+
+69
+00:04:17.2 --> 00:04:18.2
+if you haven't done it yet.
+
+70
+00:04:18.2 --> 00:04:19.3
+Happy regexing.
