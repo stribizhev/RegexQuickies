@@ -1,0 +1,371 @@
+1
+00:00:03.9 --> 00:00:04.7
+Hello.
+
+2
+00:00:04.7 --> 00:00:07.8
+In this regex quickie, we are going to speak about the regex
+
+3
+00:00:07.8 --> 00:00:09.4
+flavors used in the R language.
+
+4
+00:00:09.7 --> 00:00:13.0
+There are several regex flavors used in the R language depending
+
+5
+00:00:13.0 --> 00:00:15.3
+on the functions and arguments you use.
+
+6
+00:00:15.6 --> 00:00:21.2
+So base R regex functions by default use TRE regex engine.
+
+7
+00:00:21.3 --> 00:00:24.4
+You can use "perl=TRUE" argument,
+
+8
+00:00:24.7 --> 00:00:28.3
+then these functions use the PCRE regex engine.
+
+9
+00:00:29.3 --> 00:00:34.4
+If you use "stringr" or "stringi" functions, then you should
+
+10
+00:00:34.4 --> 00:00:39.4
+know that you are using the ICU regex engine flavor.
+
+11
+00:00:39.4 --> 00:00:40.2
+In "gsubfn" package,
+
+12
+00:00:40.4 --> 00:00:44.7
+The default regex engine is TCL that you can override with
+
+13
+00:00:44.7 --> 00:00:46.8
+a "perl=TRUE" argument.
+
+14
+00:00:47.0 --> 00:00:50.4
+If you don't know what regex flavor is used in the function
+
+15
+00:00:50.4 --> 00:00:54.3
+you are currently using, you can just use trial and error
+
+16
+00:00:54.3 --> 00:00:58.3
+approach and see what regex flavor it is by just trying out
+
+17
+00:00:58.3 --> 00:01:01.4
+various patterns until you find the working one.
+
+18
+00:01:01.9 --> 00:01:07.1
+These regex flavors differ a lot, but ICU and PCRE
+
+19
+00:01:07.1 --> 00:01:09.6
+regex flavors are somewhat similar.
+
+20
+00:01:09.8 --> 00:01:14.6
+TRE is POSIX based and is very specific and contains a lot
+
+21
+00:01:14.6 --> 00:01:19.1
+of bugs since it is a very old library. PCRE and ICU
+
+22
+00:01:19.1 --> 00:01:22.2
+regex engines are more stable and more predictable.
+
+23
+00:01:22.5 --> 00:01:26.8
+Also, if you are using PCRE, you can always test your regular
+
+24
+00:01:26.8 --> 00:01:29.0
+expressions at regex101.com.
+
+25
+00:01:29.2 --> 00:01:33.2
+So if you want to remove any one or more characters other
+
+26
+00:01:33.2 --> 00:01:36.3
+than digits and whitespaces from the beginning of the string,
+
+27
+00:01:36.7 --> 00:01:39.2
+you might consider using this regular expression.
+
+28
+00:01:39.7 --> 00:01:43.7
+However, it works in PCRE. It won't work
+
+29
+00:01:43.7 --> 00:01:49.0
+in TRE regex engine, you will need to add "perl=TRUE"
+
+30
+00:01:49.0 --> 00:01:56.0
+argument. Let's have a look.
+
+31
+00:01:54.0 --> 00:02:00.3
+Here, you can see that this line will result in "XYZdef", not
+
+32
+00:02:00.3 --> 00:02:06.9
+"XYZ 123" because this pattern doesn't actually
+
+33
+00:02:06.9 --> 00:02:10.3
+mean one or more characters other than digits and whitespaces
+
+34
+00:02:10.3 --> 00:02:13.9
+from the beginning of the string, it just means any one or
+
+35
+00:02:13.9 --> 00:02:16.9
+more characters other than backslash, "d" and "s".
+
+36
+00:02:17.3 --> 00:02:23.5
+That's why it matches up to "def". Here, because we're using
+
+37
+00:02:23.5 --> 00:02:25.3
+the "perl=TRUE" argument,
+
+38
+00:02:25.5 --> 00:02:30.5
+this pattern is passed correctly and just matches up to the
+
+39
+00:02:30.6 --> 00:02:35.6
+first space before "def" and we have "XYZ 123,"
+
+40
+00:02:35.6 --> 00:02:39.0
+at the beginning of the resulting string.
+
+41
+00:02:39.7 --> 00:02:43.8
+Another common issue is thinking that POSIX character classes
+
+42
+00:02:43.8 --> 00:02:45.6
+behave the same across regex flavors.
+
+43
+00:02:45.8 --> 00:02:48.4
+It is not so.
+
+44
+00:02:48.4 --> 00:02:52.7
+POSIX character classes behave differently across regex engines.
+
+45
+00:02:52.7 --> 00:02:57.8
+In PCRE, the "[:punct:]" POSIX character class matches any proper
+
+46
+00:02:57.8 --> 00:03:02.0
+punctuation and mathematical symbols. In ICU regex flavor,
+
+47
+00:03:02.0 --> 00:03:05.1
+this pattern only matches punctuation proper.
+
+48
+00:03:05.1 --> 00:03:06.7
+It won't match "+".
+
+49
+00:03:07.0 --> 00:03:11.3
+Let's have a look at an example. On this line of code,
+
+50
+00:03:11.3 --> 00:03:15.9
+the "[:punct:]" POSIX character class matched both comma and
+
+51
+00:03:16.0 --> 00:03:19.5
+plus, and they got removed in the final result.
+
+52
+00:03:20.9 --> 00:03:25.9
+However, in the ICU regex flavor, we can see that it only matched
+
+53
+00:03:25.9 --> 00:03:28.2
+a comma and the "+" remained.
+
+54
+00:03:28.4 --> 00:03:32.5
+To remove both punctuation proper and mathematical symbols
+
+55
+00:03:32.5 --> 00:03:37.3
+with the ICU regex flavor, you need a specific regex like this.
+
+56
+00:03:37.9 --> 00:03:40.8
+Another common issue is the use of lookarounds.
+
+57
+00:03:41.2 --> 00:03:45.3
+TRE regex flavor doesn't support them. PCRE and
+
+58
+00:03:45.4 --> 00:03:47.4
+ICU regex flavors both support
+
+59
+00:03:47.6 --> 00:03:49.2
+lookbehinds and lookaheads.
+
+60
+00:03:49.4 --> 00:03:53.4
+This regular expression matches any punctuation between two
+
+61
+00:03:53.4 --> 00:03:58.1
+digits. Since this is a PCRE regex demo, you can see that
+
+62
+00:03:58.1 --> 00:04:00.2
+it matches a "+" between "6" and "7".
+
+63
+00:04:00.3 --> 00:04:01.7
+Let's have a look at the code.
+
+64
+00:04:01.7 --> 00:04:06.5
+You can see that the first line here results in an invalid regular
+
+65
+00:04:06.5 --> 00:04:10.1
+expression because TRE regex flavor doesn't support lookarounds.
+
+66
+00:04:10.1 --> 00:04:16.1
+The second line here uses the PCRE regex engine and
+
+67
+00:04:16.2 --> 00:04:16.6
+it works.
+
+68
+00:04:16.6 --> 00:04:23.0
+The "+" was replaced with a "/". On this line, where the
+
+69
+00:04:23.0 --> 00:04:24.6
+ICU regex flavor is used,
+
+70
+00:04:25.1 --> 00:04:27.2
+we also have the same output.
+
+71
+00:04:27.3 --> 00:04:31.1
+Last but not least, let's have a look at the constrained-width
+
+72
+00:04:31.1 --> 00:04:34.2
+lookbehind patterns in ICU regex flavor.
+
+73
+00:04:34.4 --> 00:04:40.0
+You can see that if we use a variable quantifier inside a
+
+74
+00:04:40.0 --> 00:04:44.8
+lookbehind, it won't be supported by the PCRE regex flavor.
+
+75
+00:04:45.4 --> 00:04:49.9
+However, this regular expression pattern is quite valid in
+
+76
+00:04:49.9 --> 00:04:51.3
+the ICU regex flavor.
+
+77
+00:04:53.0 --> 00:04:54.3
+Have a look.
+
+78
+00:04:56.3 --> 00:05:01.7
+This line will result in an error because PCRE regex engine
+
+79
+00:05:01.7 --> 00:05:03.2
+doesn't support variable-width
+
+80
+00:05:03.2 --> 00:05:08.2
+lookbehind patterns. This line works fine.
+
+81
+00:05:08.5 --> 00:05:15.2
+The "+" is replaced with a "/" because we matched a non-word
+
+82
+00:05:15.2 --> 00:05:21.8
+character that appears right after "5" followed by an optional
+
+83
+00:05:21.8 --> 00:05:23.6
+"6" character.
+
+84
+00:05:24.8 --> 00:05:30.6
+This line won't work because we have "+" in the lookbehind
+
+85
+00:05:30.6 --> 00:05:33.0
+pattern. It results in a "Look-Behind
+
+86
+00:05:33.0 --> 00:05:36.7
+pattern matches must have a bounded maximum length" error.
+
+87
+00:05:36.7 --> 00:05:43.7
+So just mind using a limiting quantifier with specified maximum
+
+88
+00:05:43.8 --> 00:05:48.1
+limit. You may follow the links in the FURTHER LINKS section to
+
+89
+00:05:48.2 --> 00:05:51.3
+read more about the problems covered in this video.
+
+90
+00:05:51.5 --> 00:05:52.8
+Thank you for watching,
+
+91
+00:05:52.8 --> 00:05:55.4
+and if you like my video, please click "Like" and subscribe to
+
+92
+00:05:55.4 --> 00:05:56.9
+my channel if you haven't done it yet.
+
+93
+00:05:56.8 --> 00:05:58.4
+Happy regexing.
