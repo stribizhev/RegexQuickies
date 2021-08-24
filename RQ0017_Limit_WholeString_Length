@@ -1,0 +1,115 @@
+1
+00:00:07.0 --> 00:00:09.1
+Note:
+
+2
+00:00:09.2 --> 00:00:12.7
+You need to choose a character other than a slash as your
+
+3
+00:00:12.8 --> 00:00:17.2
+regex delimiter character in order to use a slash without escaping it
+
+4
+00:00:17.2 --> 00:00:23.6
+in your regex patterns at regex101.com.
+
+5
+00:00:23.6 --> 00:00:26.7
+ Hi, in this video, we are going to speak how to limit the length of the
+
+6
+00:00:26.7 --> 00:00:28.9
+whole string matched with a specific pattern.
+
+7
+00:00:29.1 --> 00:00:30.2
+Let's have a look.
+
+8
+00:00:30.2 --> 00:00:33.9
+The strings we want to match can have three letters at the
+
+9
+00:00:33.9 --> 00:00:37.8
+beginning, then three numbers in the middle and three letters
+
+10
+00:00:37.8 --> 00:00:38.4
+at the end.
+
+11
+00:00:39.7 --> 00:00:43.2
+Look, this pattern matches start of string with a caret
+
+12
+00:00:43.2 --> 00:00:47.2
+symbol, then one to three letters, then a hyphen, then one
+
+13
+00:00:47.2 --> 00:00:52.6
+to three digits, then a slash, and then one to three letters at
+
+14
+00:00:52.6 --> 00:00:53.6
+the end of the string.
+
+15
+00:00:54.4 --> 00:00:58.0
+Now you can see that this pattern also matches the string
+
+16
+00:00:58.0 --> 00:00:59.1
+that we don't want to match.
+
+17
+00:00:59.3 --> 00:01:04.4
+We don't want to match this string because it contains more
+
+18
+00:01:04.4 --> 00:01:05.4
+than eight characters.
+
+19
+00:01:05.7 --> 00:01:10.7
+To make sure this pattern only matches strings of one to
+
+20
+00:01:10.8 --> 00:01:15.3
+eight characters, we use a positive lookahead that matches
+
+21
+00:01:15.4 --> 00:01:22.5
+any character, one or two or three, etc. eight times until
+
+22
+00:01:22.6 --> 00:01:25.0
+the end of string. This lookahead
+
+23
+00:01:25.1 --> 00:01:29.9
+makes sure that this pattern only matches strings that are
+
+24
+00:01:29.9 --> 00:01:31.8
+no longer than eight characters.
+
+25
+00:01:31.9 --> 00:01:35.1
+Now you can see the explanation of the pattern on the right,
+
+26
+00:01:35.2 --> 00:01:38.7
+you can read more about this issue if you follow the links
+
+27
+00:01:38.7 --> 00:01:41.3
+in the FURTHER LINKS section and if you liked my video, please
+
+28
+00:01:41.3 --> 00:01:44.1
+click "Like" and subscribe to my channel if you haven't done it yet.
+
+29
+00:01:44.1 --> 00:01:46.4
+Thank you for watching and happy regexing.
