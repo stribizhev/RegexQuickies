@@ -1,0 +1,159 @@
+1
+00:00:03.9 --> 00:00:05.1
+Hello.
+
+2
+00:00:05.1 --> 00:00:07.9
+In this video we are going to speak about how to validate
+
+3
+00:00:08.0 --> 00:00:09.4
+comma-separated values.
+
+4
+00:00:10.2 --> 00:00:15.0
+First, we need to know what kind of pattern we use to match
+
+5
+00:00:15.1 --> 00:00:16.1
+one of the values.
+
+6
+00:00:16.7 --> 00:00:19.4
+In this case, let's try integer numbers.
+
+7
+00:00:19.8 --> 00:00:23.3
+We know that in order to match an entire string, we need
+
+8
+00:00:23.3 --> 00:00:24.0
+to use anchors.
+
+9
+00:00:25.6 --> 00:00:30.5
+Now let's start. The caret symbol will match the start of
+
+10
+00:00:30.6 --> 00:00:37.2
+string, then we match one or more digits, and then we match
+
+11
+00:00:37.8 --> 00:00:43.9
+zero or more occurrences of a comma and one or more digits.
+
+12
+00:00:44.4 --> 00:00:48.8
+And then we match the end of string using the dollar symbol.
+
+13
+00:00:49.7 --> 00:00:54.8
+So this is the pattern that validates strings that only contain
+
+14
+00:00:55.1 --> 00:00:57.1
+comma-separated integer numbers.
+
+15
+00:00:58.1 --> 00:01:03.3
+Look, we've got all the matches here and we do not match
+
+16
+00:01:03.3 --> 00:01:04.7
+any of these strings.
+
+17
+00:01:05.1 --> 00:01:10.9
+If there can be whitespaces in between the commas, for example,
+
+18
+00:01:10.9 --> 00:01:21.5
+here, here, here, we can add "\s*" pattern around the
+
+19
+00:01:21.6 --> 00:01:27.4
+comma. This will ensure that even if we have whitespaces on
+
+20
+00:01:27.4 --> 00:01:32.2
+either side of the comma, the string will get validated.
+
+21
+00:01:32.2 --> 00:01:32.7
+Instead of the comma,
+
+22
+00:01:32.9 --> 00:01:35.6
+you can have any kind of separater pattern here.
+
+23
+00:01:35.9 --> 00:01:38.0
+Let's try some exotic pattern.
+
+24
+00:01:38.1 --> 00:01:42.6
+For example, a comma in between angle brackets.
+
+25
+00:01:44.1 --> 00:01:48.4
+And in order to match this pattern, all we need to do is
+
+26
+00:01:48.5 --> 00:01:50.8
+add angle brackets here in the pattern.
+
+27
+00:01:51.3 --> 00:01:55.7
+If you need help with the code, don't forget to check the "Code
+
+28
+00:01:55.7 --> 00:01:58.7
+generator" page at regex101.com.
+
+29
+00:01:59.0 --> 00:02:01.2
+Just select the language you need.
+
+30
+00:02:02.6 --> 00:02:06.7
+Please note that this pattern follows a specific scheme that is:
+
+31
+00:02:06.7 --> 00:02:14.0
+the caret symbol, pattern, a non-capturing group with
+
+32
+00:02:14.0 --> 00:02:20.6
+a separator and a pattern, that is quantified with an asterisk,
+
+33
+00:02:20.9 --> 00:02:26.4
+and then the dollar symbol comes to denote the end of the string.
+
+34
+00:02:26.5 --> 00:02:30.9
+This is a common scheme for all regular expressions of this type.
+
+35
+00:02:31.0 --> 00:02:34.4
+Now you can see the explanation of the pattern on the right,
+
+36
+00:02:34.6 --> 00:02:37.8
+you can read more about this subject by following the links
+
+37
+00:02:37.8 --> 00:02:39.2
+in the "FURTHER LINKS" section,
+
+38
+00:02:39.2 --> 00:02:42.3
+and if you liked my video, please click "Like" and subscribe
+
+39
+00:02:42.4 --> 00:02:44.0
+to my channel if you haven't done it yet.
+
+40
+00:02:44.3 --> 00:02:46.4
+Thank you for watching and happy regexing.
