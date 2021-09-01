@@ -1,0 +1,336 @@
+1
+00:00:03.9 --> 00:00:04.8
+Hello.
+
+2
+00:00:04.8 --> 00:00:07.3
+In this video, we are going to speak about the use cases
+
+3
+00:00:07.3 --> 00:00:08.8
+of \G operator.
+
+4
+00:00:09.1 --> 00:00:11.7
+The \G operator works at an anchor.
+
+5
+00:00:12.1 --> 00:00:14.8
+It matches the start of string position.
+
+6
+00:00:15.4 --> 00:00:19.4
+Besides, it also matches the position after the previous
+
+7
+00:00:19.4 --> 00:00:20.4
+successful match.
+
+8
+00:00:20.6 --> 00:00:24.7
+It means that we can use this operator to match any one or
+
+9
+00:00:24.7 --> 00:00:28.0
+more occurrences of a single pattern at the beginning of
+
+10
+00:00:28.0 --> 00:00:28.4
+the string.
+
+11
+00:00:28.7 --> 00:00:35.4
+For example, let's check the first pattern here, which is
+
+12
+00:00:35.9 --> 00:00:41.2
+\G and a hyphen.
+
+13
+00:00:41.6 --> 00:00:48.1
+So we can use a hyphen one or more times at the beginning
+
+14
+00:00:48.1 --> 00:00:48.6
+of the string.
+
+15
+00:00:48.8 --> 00:00:53.2
+So here it matches a single hyphen because there is only one
+
+16
+00:00:53.2 --> 00:00:55.0
+hyphen at the beginning of the string,
+
+17
+00:00:55.3 --> 00:01:00.0
+and in this case we match all three hyphens at the beginning
+
+18
+00:01:00.0 --> 00:01:00.5
+of the string.
+
+19
+00:01:05.1 --> 00:01:10.6
+Now, the second use of \G operator is to match any occurrences
+
+20
+00:01:10.7 --> 00:01:14.0
+of a pattern in between two different patterns.
+
+21
+00:01:14.7 --> 00:01:22.1
+So in this case we have the following units in the regular
+
+22
+00:01:22.1 --> 00:01:26.4
+expression, let's put them on different lines and enable
+
+23
+00:01:26.4 --> 00:01:28.4
+the extended mode.
+
+24
+00:01:28.4 --> 00:01:32.3
+This means that we are going to ignore any whitespace inside
+
+25
+00:01:32.3 --> 00:01:32.8
+the pattern.
+
+26
+00:01:33.0 --> 00:01:40.1
+So here you can see that we match either two square brackets...
+
+27
+00:01:41.2 --> 00:01:49.1
+So we match either this or the end of the previous successful
+
+28
+00:01:49.1 --> 00:02:00.6
+match. And here we match any character that is repeated zero
+
+29
+00:02:00.6 --> 00:02:01.2
+more times,
+
+30
+00:02:03.7 --> 00:02:14.3
+but as few as possible, that doesn't start the character
+
+31
+00:02:14.4 --> 00:02:20.0
+sequences: double open or double close brackets.
+
+32
+00:02:20.8 --> 00:02:25.5
+Now, this is the pattern that we're going to match and usually
+
+33
+00:02:25.5 --> 00:02:26.6
+remove in this case.
+
+34
+00:02:27.6 --> 00:02:31.4
+So this is just a "hyphen, vertical bar, hyphen" pattern.
+
+35
+00:02:32.4 --> 00:02:35.7
+And here we have a positive lookahead that makes sure that
+
+36
+00:02:35.7 --> 00:02:42.4
+we are actually in between double square brackets that are
+
+37
+00:02:42.4 --> 00:02:43.8
+open and close here.
+
+38
+00:02:44.6 --> 00:02:48.8
+So we're making sure that we are in between these substrings
+
+39
+00:02:50.9 --> 00:02:56.0
+and we may replace them using backreferences
+
+40
+00:02:57.7 --> 00:03:01.5
+and let's say we want to replace them with a plus symbol.
+
+41
+00:03:02.1 --> 00:03:06.0
+You can see that there are no replacements done to the last
+
+42
+00:03:06.4 --> 00:03:12.5
+part that is not actually closed with two close brackets.
+
+43
+00:03:12.7 --> 00:03:15.6
+If we add them, we'll get a match here as well.
+
+44
+00:03:17.7 --> 00:03:20.5
+Let's go to another example.
+
+45
+00:03:23.9 --> 00:03:28.7
+And this is an example where we match a certain pattern several
+
+46
+00:03:28.7 --> 00:03:30.9
+times after a specific substring.
+
+47
+00:03:30.9 --> 00:03:36.3
+So in this case, we see that there is a 
+"secondid" parameter
+
+48
+00:03:36.4 --> 00:03:42.7
+in a query string, and we want to match all the numbers that
+
+49
+00:03:42.7 --> 00:03:45.0
+are comma-separated right after this string.
+
+50
+00:03:45.7 --> 00:03:53.6
+So what we do is again, let's turn on the extended mode and
+
+51
+00:03:58.6 --> 00:03:59.9
+look here.
+
+52
+00:04:00.9 --> 00:04:04.8
+We actually have a non-capturing group...
+
+53
+00:04:06.6 --> 00:04:07.6
+here...
+
+54
+00:04:08.0 --> 00:04:13.4
+So this is a start of the non-capturing group...
+
+55
+00:04:14.5 --> 00:04:22.0
+Next, we match the end of the successful match.
+
+56
+00:04:22.8 --> 00:04:32.9
+This is OR... This matches either a question mark or an "and",
+
+57
+00:04:33.1 --> 00:04:35.6
+an ampersand symbol,
+
+58
+00:04:36.2 --> 00:04:41.8
+and then "secondid" string followed with an "equals" sign.
+
+59
+00:04:42.2 --> 00:04:44.7
+This is the end of the group...
+
+60
+00:04:46.7 --> 00:04:53.5
+and this is the \K operator that omits the text matched
+
+61
+00:04:53.5 --> 00:05:00.5
+so far. It is available in PCRE and Onigmo regex engines.
+
+62
+00:05:01.5 --> 00:05:04.5
+And this matches any one or more digits.
+
+63
+00:05:06.6 --> 00:05:08.0
+So here,
+
+64
+00:05:08.6 --> 00:05:11.2
+this pattern matches the end of the previous successful match,
+
+65
+00:05:11.6 --> 00:05:19.4
+and a comma. We put the comma here in this part of the pattern
+
+66
+00:05:19.4 --> 00:05:22.6
+because we are actually not going to consume it...
+
+67
+00:05:22.6 --> 00:05:24.1
+We're not going to return it.
+
+68
+00:05:24.1 --> 00:05:29.1
+We only want to make sure we consume it, but then we discard
+
+69
+00:05:29.1 --> 00:05:30.1
+it with \K.
+
+70
+00:05:30.2 --> 00:05:37.3
+It's also possible to use it here and make it optional.
+
+71
+00:05:37.8 --> 00:05:43.7
+Then we can remove it from here, but it makes more sense
+
+72
+00:05:43.7 --> 00:05:46.1
+to put comma right where it should be.
+
+73
+00:05:46.2 --> 00:05:50.2
+We only want to match it after we successfully matched the
+
+74
+00:05:50.2 --> 00:05:51.9
+first one or more digits.
+
+75
+00:05:52.5 --> 00:05:56.8
+Well, if you have any problem with putting this into your
+
+76
+00:05:56.8 --> 00:06:00.1
+code, don't forget to check the "Code Generator" page and select
+
+77
+00:06:00.1 --> 00:06:01.3
+the language you need.
+
+78
+00:06:01.8 --> 00:06:05.0
+Now, you can see the explanation of the pattern on the right.
+
+79
+00:06:05.0 --> 00:06:08.7
+You can see more examples of \G operator usage if you follow
+
+80
+00:06:08.8 --> 00:06:10.9
+the links in the "FURTHER LINKS" section,
+
+81
+00:06:11.3 --> 00:06:13.9
+and if you liked my video, please click "Like" and subscribe
+
+82
+00:06:13.9 --> 00:06:14.5
+to my channel
+
+83
+00:06:14.5 --> 00:06:17.0
+if you haven't done it yet. Thank you for watching and
+
+84
+00:06:17.0 --> 00:06:17.5
+happy regexing.
