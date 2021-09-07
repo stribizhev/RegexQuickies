@@ -1,0 +1,251 @@
+1
+00:00:04.2 --> 00:00:05.2
+Hello.
+
+2
+00:00:05.2 --> 00:00:08.3
+In this video we are going to speak about how to fix some
+
+3
+00:00:08.3 --> 00:00:10.7
+specific case of catastrophic backtracking.
+
+4
+00:00:10.8 --> 00:00:14.7
+One of the features that makes regular expressions that powerful
+
+5
+00:00:14.7 --> 00:00:20.0
+is their ability to backtrack. Backtracking means accommodating
+
+6
+00:00:20.0 --> 00:00:23.3
+all the subsequent patterns to provide a valid match.
+
+7
+00:00:23.8 --> 00:00:27.9
+Sometimes backtracking takes so much time that the regex
+
+8
+00:00:27.9 --> 00:00:31.2
+engine cannot compute all possible ways to match a string
+
+9
+00:00:31.3 --> 00:00:33.1
+in a reasonable period of time.
+
+10
+00:00:33.4 --> 00:00:37.3
+In that case, we call that backtracking catastrophic.
+
+11
+00:00:37.3 --> 00:00:41.4
+Catastrophic backtracking happens in most cases
+
+12
+00:00:41.5 --> 00:00:46.0
+when we have some optional pattern in between some obligatory
+
+13
+00:00:46.0 --> 00:00:48.7
+patterns. Let's have a look at this regular expression.
+
+14
+00:00:48.8 --> 00:00:53.5
+This regular expression contains several groups that are quantified
+
+15
+00:00:53.5 --> 00:00:54.5
+with asterisk.
+
+16
+00:00:54.5 --> 00:01:00.4
+It means that these sequences inside the group can repeat
+
+17
+00:01:00.4 --> 00:01:01.6
+zero or more times.
+
+18
+00:01:02.5 --> 00:01:08.1
+However, you can see that the first atom here that matches
+
+19
+00:01:08.2 --> 00:01:12.0
+a dot or a hyphen actually is optional.
+
+20
+00:01:12.2 --> 00:01:15.5
+It matches one or zero occurrences of a hyphen or dot.
+
+21
+00:01:16.6 --> 00:01:20.6
+It means that in fact, the regular expression engine doesn't
+
+22
+00:01:20.6 --> 00:01:23.0
+have to match this pattern.
+
+23
+00:01:23.2 --> 00:01:28.0
+It only has to match word characters with this part of the group.
+
+24
+00:01:28.8 --> 00:01:32.8
+This means that this part of the pattern actually reduces
+
+25
+00:01:32.9 --> 00:01:34.2
+to this.
+
+26
+00:01:39.2 --> 00:01:44.9
+This means that there are a lot of ways to actually consume
+
+27
+00:01:44.9 --> 00:01:47.7
+word characters. Here,
+
+28
+00:01:47.7 --> 00:01:49.6
+they can match one more times,
+
+29
+00:01:49.6 --> 00:01:54.6
+they can match one more times here, zero or more times.
+
+30
+00:01:54.6 --> 00:02:00.0
+This provides almost infinite ways of matching a certain
+
+31
+00:02:00.0 --> 00:02:02.1
+string. Let's have a look at this string.
+
+32
+00:02:02.1 --> 00:02:03.2
+It's very short.
+
+33
+00:02:03.5 --> 00:02:06.7
+There is no catastrophic backtracking right here because
+
+34
+00:02:07.1 --> 00:02:09.9
+this string fully matches this pattern.
+
+35
+00:02:10.7 --> 00:02:18.0
+However, if we remove the last two characters, catastrophic
+
+36
+00:02:18.0 --> 00:02:20.6
+backtracking occurs, and you can easily check that if you
+
+37
+00:02:20.6 --> 00:02:22.3
+click the "Regex Debugger" link on the left.
+
+38
+00:02:29.1 --> 00:02:32.3
+In order to fix catastrophic back tracking, we must make
+
+39
+00:02:32.3 --> 00:02:39.2
+sure that the subsequent patterns match at different locations
+
+40
+00:02:39.2 --> 00:02:40.0
+inside the string.
+
+41
+00:02:40.0 --> 00:02:44.7
+So in this case we must make this pattern obligatory.
+
+42
+00:02:44.9 --> 00:02:51.8
+We should remove the question mark because in this case this
+
+43
+00:02:51.8 --> 00:02:55.1
+group will only match when there is a hyphen or a dot.
+
+44
+00:02:55.4 --> 00:03:00.4
+There is no sense keeping this pattern optional because this
+
+45
+00:03:00.8 --> 00:03:05.3
+group matches zero or more times, it can match an empty string.
+
+46
+00:03:06.2 --> 00:03:09.3
+And here this part matches one more characters and there
+
+47
+00:03:09.3 --> 00:03:13.9
+is no sense to match one or more word characters again after
+
+48
+00:03:13.9 --> 00:03:14.6
+matching them.
+
+49
+00:03:14.9 --> 00:03:18.9
+This pattern already matches this pattern
+
+50
+00:03:18.9 --> 00:03:26.2
+if we add another question mark quantifier. Here, the question
+
+51
+00:03:26.2 --> 00:03:29.7
+mark is just redundant and harmful.
+
+52
+00:03:30.1 --> 00:03:32.7
+The same goes here.
+
+53
+00:03:33.1 --> 00:03:36.6
+We should remove this question mark here because otherwise
+
+54
+00:03:37.3 --> 00:03:44.2
+this pattern can be backtracked into this pattern and catastrophic
+
+55
+00:03:44.2 --> 00:03:49.3
+backtracking is imminent. So, we must remove it and you see
+
+56
+00:03:49.3 --> 00:03:53.9
+we've got no match, "no match" meaning there regex engine
+
+57
+00:03:54.1 --> 00:03:56.8
+failed gracefully without any error.
+
+58
+00:03:57.2 --> 00:04:01.0
+Now, you can see the explanation of this pattern here on the
+
+59
+00:04:01.0 --> 00:04:04.3
+right, you can read more about similar cases by following
+
+60
+00:04:04.3 --> 00:04:05.9
+the links in the "FURTHER LINKS" section,
+
+61
+00:04:06.1 --> 00:04:08.9
+and if you liked my video, please click "Like" and subscribe
+
+62
+00:04:08.9 --> 00:04:10.3
+to my channel if you haven't done it yet.
+
+63
+00:04:10.3 --> 00:04:12.7
+Thank you for watching and happy regexing.
