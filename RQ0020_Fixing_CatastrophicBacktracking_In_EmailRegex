@@ -108,11 +108,11 @@ word characters. Here,
 
 28
 00:01:47.7 --> 00:01:49.6
-they can match one more times,
+they can match one or more times,
 
 29
 00:01:49.6 --> 00:01:54.6
-they can match one more times here, zero or more times.
+they can match one or more times here, zero or more times.
 
 30
 00:01:54.6 --> 00:02:00.0
