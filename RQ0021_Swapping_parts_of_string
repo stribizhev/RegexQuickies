@@ -76,7 +76,7 @@ an underscore, and the rest one or more characters other than
 
 20
 00:01:20.3 --> 00:01:25.5
-linebreak characters are captured in the Group 3 and end
+linebreak characters are captured into Group 3 and end
 
 21
 00:01:25.6 --> 00:01:26.6
