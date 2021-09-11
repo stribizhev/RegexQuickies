@@ -1,0 +1,275 @@
+1
+00:00:03.5 --> 00:00:04.5
+Hello.
+
+2
+00:00:04.5 --> 00:00:07.3
+In this video we're going to learn how to swap two parts
+
+3
+00:00:07.3 --> 00:00:08.0
+of a string.
+
+4
+00:00:08.4 --> 00:00:12.4
+In order to do this, we need to use capturing groups and
+
+5
+00:00:12.4 --> 00:00:16.5
+backreferences that refer to the values captured with those
+
+6
+00:00:16.5 --> 00:00:19.2
+groups. Now, let's look at these strings.
+
+7
+00:00:19.7 --> 00:00:25.4
+We want to match the part before the first underscore and
+
+8
+00:00:25.4 --> 00:00:29.1
+replace it with a part after the last underscore.
+
+9
+00:00:29.7 --> 00:00:34.4
+In order to do this, we need to write a regular expression
+
+10
+00:00:34.4 --> 00:00:35.5
+to match this format first.
+
+11
+00:00:35.6 --> 00:00:40.2
+I already wrote this pattern before.
+
+12
+00:00:40.8 --> 00:00:42.0
+Here it is.
+
+13
+00:00:43.8 --> 00:00:48.6
+This pattern matches the start of the string first with
+
+14
+00:00:48.6 --> 00:00:53.2
+a caret symbol, then it captures into Group 1 one or more
+
+15
+00:00:53.8 --> 00:00:57.7
+characters other than underscore and a newline.
+
+16
+00:00:58.0 --> 00:01:01.8
+The newline is added because this is a multiline string
+
+17
+00:01:01.8 --> 00:01:08.5
+demo. Next, we capture into Group 2 any zero or more characters
+
+18
+00:01:08.5 --> 00:01:14.0
+other than linebreak characters as many as possible up to
+
+19
+00:01:14.3 --> 00:01:20.3
+an underscore, and the rest one or more characters other than
+
+20
+00:01:20.3 --> 00:01:25.5
+linebreak characters are captured in the Group 3 and end
+
+21
+00:01:25.6 --> 00:01:26.6
+of string should follow.
+
+22
+00:01:27.9 --> 00:01:32.0
+You can see the group IDs when you hover over these groups
+
+23
+00:01:32.1 --> 00:01:38.3
+here. Group 1, Group 2, Group 3. Group 1, Group 2,
+
+24
+00:01:38.3 --> 00:01:42.4
+Group 3. Group 1, Group 2, Group 3.
+
+25
+00:01:42.6 --> 00:01:46.6
+So each of these groups can be referred to from the replacement
+
+26
+00:01:46.6 --> 00:01:48.1
+pattern using backreferences.
+
+27
+00:01:48.4 --> 00:01:52.6
+We're now talking about numbered capturing groups and we'll
+
+28
+00:01:52.6 --> 00:01:54.1
+be using numbered backreferences.
+
+29
+00:01:55.7 --> 00:02:01.2
+Let's switch on the Substitution pane and you can see that
+
+30
+00:02:01.2 --> 00:02:04.7
+I have already got some substitution pattern here.
+
+31
+00:02:04.7 --> 00:02:09.7
+It puts Group 3 value at the beginning, Group 2 value
+
+32
+00:02:09.7 --> 00:02:15.3
+where it was in between, and Group 1 is now at the end.
+
+33
+00:02:15.7 --> 00:02:19.7
+Now you can see that the value after last underscore is now
+
+34
+00:02:20.1 --> 00:02:25.1
+before the first underscore in the string and same goes for
+
+35
+00:02:25.1 --> 00:02:27.0
+the part before the first underscore,
+
+36
+00:02:27.1 --> 00:02:29.1
+it is now at the end.
+
+37
+00:02:29.4 --> 00:02:34.2
+Please note that backreference syntax differs across regex
+
+38
+00:02:34.2 --> 00:02:42.9
+implementations. In JavaScript you would use dollar and
+
+39
+00:02:42.9 --> 00:02:47.9
+a number. You can use the same backreference syntax in Java
+
+40
+00:02:48.1 --> 00:02:48.9
+and .NET.
+
+41
+00:02:49.6 --> 00:02:57.2
+However, in Python or in R, we usually use backslashes, so
+
+42
+00:02:57.2 --> 00:02:59.7
+that's why I keep backslashes right here,
+
+43
+00:02:59.7 --> 00:03:04.7
+and now let's have a look at the code demo. And here is the
+
+44
+00:03:04.7 --> 00:03:09.1
+R code demo showing how to use the regular expression that
+
+45
+00:03:09.1 --> 00:03:10.9
+I explained before.
+
+46
+00:03:10.9 --> 00:03:15.5
+So in this case we have a character vector "x" containing all
+
+47
+00:03:15.5 --> 00:03:17.0
+our example strings.
+
+48
+00:03:17.8 --> 00:03:21.5
+We're using the "sub" function that will actually run the regex
+
+49
+00:03:21.5 --> 00:03:27.5
+replacements. The first argument in "sub" function is the regular
+
+50
+00:03:27.5 --> 00:03:28.3
+expression itself.
+
+51
+00:03:29.1 --> 00:03:32.4
+The second argument is the replacement pattern.
+
+52
+00:03:32.5 --> 00:03:36.9
+Please note that the backslashes are doubled because in a
+
+53
+00:03:36.9 --> 00:03:41.3
+string literal we need to use two backslashes to define a
+
+54
+00:03:41.3 --> 00:03:43.6
+single literal backslash character.
+
+55
+00:03:45.1 --> 00:03:48.1
+The third argument is the input.
+
+56
+00:03:48.8 --> 00:03:53.6
+The fourth argument "perl=TRUE" means that we are going
+
+57
+00:03:53.6 --> 00:03:57.6
+to use the PCRE regex engine, the same regex engine we've
+
+58
+00:03:57.6 --> 00:04:00.0
+been using on the regex testing site.
+
+59
+00:04:00.4 --> 00:04:05.0
+Now, if we run this command, you will see that we've got all
+
+60
+00:04:05.0 --> 00:04:09.8
+our expected strings back with the swapped string parts.
+
+61
+00:04:10.1 --> 00:04:14.0
+If you need help with code in other languages, don't forget
+
+62
+00:04:14.0 --> 00:04:17.5
+to check the Code Generator page and select the language
+
+63
+00:04:17.6 --> 00:04:18.5
+you're interested in.
+
+64
+00:04:19.4 --> 00:04:23.0
+You can also check the explanation of the pattern on the right,
+
+65
+00:04:23.2 --> 00:04:26.8
+you can read more about this issue by following the links
+
+66
+00:04:26.8 --> 00:04:28.0
+in the FURTHER LINKS section,
+
+67
+00:04:28.3 --> 00:04:31.1
+and if you liked my video, please click "Like" and subscribe
+
+68
+00:04:31.1 --> 00:04:31.6
+to my channel
+
+69
+00:04:31.6 --> 00:04:35.5
+if you haven't done it yet. Thank you for watching and happy regexing.
