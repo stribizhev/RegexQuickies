@@ -136,7 +136,7 @@ Let's switch to Golang and you see that our pattern is invalid.
 
 35
 00:02:16.8 --> 00:02:20.4
-In this case, we should use capturing groups in the pattern,
+In this case, we should use capturing groups in the pattern.
 
 36
 00:02:20.6 --> 00:02:24.6
