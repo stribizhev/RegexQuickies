@@ -1,0 +1,243 @@
+1
+00:00:03.6 --> 00:00:04.6
+Hello.
+
+2
+00:00:04.6 --> 00:00:07.8
+In this video we are going to speak how to match an exact
+
+3
+00:00:07.9 --> 00:00:10.7
+occurrence of a character inside a string.
+
+4
+00:00:10.9 --> 00:00:16.1
+As an example, let's match two consecutive "A" characters.
+
+5
+00:00:16.1 --> 00:00:17.6
+Have a look: in the string
+
+6
+00:00:17.6 --> 00:00:22.3
+we've got only two occurrences of double "A"s at the beginning
+
+7
+00:00:22.3 --> 00:00:24.7
+and in the middle.
+
+8
+00:00:24.9 --> 00:00:30.5
+Now, in order to match it, we can use a pattern with a lookbehind
+
+9
+00:00:30.5 --> 00:00:33.6
+and a lookahead, like this one.
+
+10
+00:00:34.0 --> 00:00:40.0
+Here, the negative lookbehind matches a location that is not
+
+11
+00:00:40.0 --> 00:00:45.1
+immediately preceded with an "A" and negative lookahead
+
+12
+00:00:45.4 --> 00:00:46.4
+fails the match
+
+13
+00:00:46.4 --> 00:00:50.0
+if there is an "A" immediately to the right of the current location.
+
+14
+00:00:50.0 --> 00:00:53.3
+We can control the amount of "A" characters we
+
+15
+00:00:53.3 --> 00:00:55.5
+match with the limiting quantifier.
+
+16
+00:00:56.1 --> 00:01:02.0
+In this case, it says two, but we can match three or we can
+
+17
+00:01:02.0 --> 00:01:02.8
+match just one.
+
+18
+00:01:03.2 --> 00:01:07.6
+Although in this case we can just remove this limiting quantifier
+
+19
+00:01:07.6 --> 00:01:08.9
+because it is redundant.
+
+20
+00:01:08.9 --> 00:01:13.1
+We can replace "A" with any other pattern that matches any
+
+21
+00:01:13.1 --> 00:01:13.8
+single character.
+
+22
+00:01:14.0 --> 00:01:18.7
+For example, let's match chunks of two digits, not three,
+
+23
+00:01:18.7 --> 00:01:21.1
+not four, not one, two digits.
+
+24
+00:01:21.6 --> 00:01:29.4
+We need to replace "A" with a digit pattern, and you see that we
+
+25
+00:01:29.4 --> 00:01:35.3
+matched 12, 24, 09, 23 and 34 on the second line.
+
+26
+00:01:35.5 --> 00:01:40.1
+Note, there are no matches in 123 and 2018
+
+27
+00:01:40.1 --> 00:01:41.2
+just as expected.
+
+28
+00:01:41.2 --> 00:01:45.1
+Now, if you want to remove these matches, you may just use
+
+29
+00:01:45.1 --> 00:01:50.6
+an empty string in the replacement, like this. You can see
+
+30
+00:01:50.6 --> 00:01:54.1
+that our matches have been removed from the input string.
+
+31
+00:01:54.3 --> 00:01:59.9
+We may replace them with some hard-coded value like 50.
+
+32
+00:02:01.2 --> 00:02:05.0
+Now what can we do if our regex flavor doesn't support lookarounds?
+
+33
+00:02:05.0 --> 00:02:11.8
+For example, in Go, the RE2 library doesn't support lookarounds.
+
+34
+00:02:11.8 --> 00:02:16.5
+Let's switch to Golang and you see that our pattern is invalid.
+
+35
+00:02:16.8 --> 00:02:20.4
+In this case, we should use capturing groups in the pattern,
+
+36
+00:02:20.6 --> 00:02:24.6
+So, the first capturing group should match either
+
+37
+00:02:24.6 --> 00:02:28.2
+a non-digit character or the start of the string, and a trailing
+
+38
+00:02:28.2 --> 00:02:31.2
+capturing group should match either a non-digit character
+
+39
+00:02:31.4 --> 00:02:33.0
+or the end of the string.
+
+40
+00:02:34.3 --> 00:02:38.4
+Now we need to use backreferences in the replacement pattern.
+
+41
+00:02:38.9 --> 00:02:43.9
+At the end, we'll put backreference with ID 2, and at the
+
+42
+00:02:43.9 --> 00:02:47.7
+beginning, we need to put the backreference with ID 1.
+
+43
+00:02:47.8 --> 00:02:51.8
+Note that I'm using this backreference ID in curly braces
+
+44
+00:02:52.2 --> 00:02:56.6
+because the first character of the replacement is a digit,
+
+45
+00:02:57.0 --> 00:03:02.3
+and if we do not use curly braces, this 5 will count towards
+
+46
+00:03:02.3 --> 00:03:04.2
+the group ID, which is wrong.
+
+47
+00:03:04.3 --> 00:03:09.5
+If we remove the curly braces, we'll receive an error because
+
+48
+00:03:09.5 --> 00:03:12.5
+there is no group with ID 150.
+
+49
+00:03:13.8 --> 00:03:18.5
+Let's put the braces back into the replacement pattern.
+
+50
+00:03:18.5 --> 00:03:20.5
+There's one caveat with this approach.
+
+51
+00:03:20.6 --> 00:03:24.4
+If the matches are consecutive, we won't get all the matches
+
+52
+00:03:24.4 --> 00:03:24.8
+we want.
+
+53
+00:03:25.2 --> 00:03:29.0
+Remember that if you need help with implementing this regex
+
+54
+00:03:29.0 --> 00:03:35.4
+in your code, there is a Code Generator link here at regex101.com.
+
+55
+00:03:35.4 --> 00:03:38.5
+You can read the explanation of the pattern on the right,
+
+56
+00:03:38.7 --> 00:03:40.7
+you can read more about similar issues
+
+57
+00:03:40.7 --> 00:03:43.2
+if you follow the links in the FURTHER LINKS section,
+
+58
+00:03:43.3 --> 00:03:46.0
+and if you liked my video, please click "Like" and subscribe
+
+59
+00:03:46.0 --> 00:03:46.6
+to my channel
+
+60
+00:03:46.6 --> 00:03:49.6
+if you haven't done it yet. Thank you for watching and
+
+61
+00:03:49.6 --> 00:03:50.2
+happy regexing.
