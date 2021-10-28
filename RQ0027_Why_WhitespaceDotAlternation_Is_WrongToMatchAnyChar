@@ -1,0 +1,271 @@
+1
+00:00:04.3 --> 00:00:05.0
+Hello.
+
+2
+00:00:05.1 --> 00:00:09.2
+The topic of today's video will be why "(?:\s|.)*?"
+
+3
+00:00:09.7 --> 00:00:13.4
+"(?:\s|.)*?" is a bad pattern to match
+
+4
+00:00:13.7 --> 00:00:16.0
+any character, including linebreak characters.
+
+5
+00:00:17.0 --> 00:00:21.0
+It's common knowledge now that a dot in common modern
+
+6
+00:00:21.5 --> 00:00:24.8
+NFA regex engines does not match linebreak characters
+
+7
+00:00:25.0 --> 00:00:28.7
+by default, the characters like carriage return or line feed,
+
+8
+00:00:29.0 --> 00:00:32.9
+for example. In order to match any character, including any
+
+9
+00:00:33.1 --> 00:00:36.9
+linebreak characters, we should usually use a dot and an
+
+10
+00:00:37.1 --> 00:00:39.7
+appropriate option or modifier.
+
+11
+00:00:40.6 --> 00:00:45.2
+In most cases it should be the "s" flag, or "singleline", also
+
+12
+00:00:45.5 --> 00:00:47.3
+called "DOTALL" modifier.
+
+13
+00:00:49.0 --> 00:00:52.2
+Please have a look at my StackOverflow answer where I explain
+
+14
+00:00:53.8 --> 00:00:57.6
+the usage of dot to match any character across various regex
+
+15
+00:00:57.8 --> 00:01:02.0
+engines, including POSIX and common NFA regex engines.
+
+16
+00:01:03.2 --> 00:01:09.0
+So in most cases this is just a dot and a flag that modifies
+
+17
+00:01:09.2 --> 00:01:10.3
+the behavior of the dot.
+
+18
+00:01:11.2 --> 00:01:14.9
+Mostly it's "s", but in Ruby, for example, it's "m".
+
+19
+00:01:17.9 --> 00:01:21.6
+Now a lot of people still think that using this kind of pattern,
+
+20
+00:01:23.0 --> 00:01:26.3
+an alternation of dot and a newline or an alternation of
+
+21
+00:01:26.4 --> 00:01:30.0
+whitespace and newline is still a valid way to match any
+
+22
+00:01:30.2 --> 00:01:31.6
+character across lines.
+
+23
+00:01:33.2 --> 00:01:36.1
+Let's switch to our regex101.com
+
+24
+00:01:36.1 --> 00:01:38.8
+demo and I'll explain you why it is a bad idea.
+
+25
+00:01:40.7 --> 00:01:43.6
+Let's have a look at what this pattern actually does.
+
+26
+00:01:44.7 --> 00:01:48.6
+Here we are trying to match any text inside a table row that
+
+27
+00:01:48.7 --> 00:01:50.2
+contains a single cell.
+
+28
+00:01:51.8 --> 00:01:56.0
+You can see that we've got eight matches and it took us 498
+
+29
+00:01:56.3 --> 00:01:58.5
+steps to get all of these matches.
+
+30
+00:01:59.9 --> 00:02:05.1
+If we use a dot with the appropriate flag, have a look,
+
+31
+00:02:05.4 --> 00:02:06.8
+we added the "s" flag here
+
+32
+00:02:08.6 --> 00:02:09.3
+("singleline" flag)
+
+33
+00:02:10.1 --> 00:02:16.0
+the number of steps decreased to 330. 330 is still
+
+34
+00:02:16.0 --> 00:02:19.7
+a lot, but it's already acceptable because if you can imagine,
+
+35
+00:02:20.3 --> 00:02:22.0
+HTML files can be very large.
+
+36
+00:02:23.1 --> 00:02:27.3
+Now how many steps does it take the regex engine to find matches with this pattern?
+
+37
+00:02:28.0 --> 00:02:32.1
+Let's check the "Regex Debugger" option at regex101.com.
+
+38
+00:02:33.3 --> 00:02:38.3
+Here you can see that it took the regex engine 131 steps
+
+39
+00:02:38.6 --> 00:02:39.6
+to find the first match.
+
+40
+00:02:40.5 --> 00:02:43.1
+Let's see how exactly the regex engine does it.
+
+41
+00:02:43.5 --> 00:02:47.3
+Let's click the "Play" button and you can see that for yourselves.
+
+42
+00:02:48.5 --> 00:02:52.4
+Note how often the red arrow appears signaling backtracking.
+
+43
+00:02:53.4 --> 00:02:56.0
+Matching the lazy alternation pattern inside parentheses
+
+44
+00:02:56.4 --> 00:03:01.4
+is repeatedly skipped and is backtracked into (it means "is
+
+45
+00:03:01.5 --> 00:03:05.2
+retried") until the regex engine finds the open angle bracket
+
+46
+00:03:05.5 --> 00:03:06.5
+and the rest of the pattern.
+
+47
+00:03:07.7 --> 00:03:12.4
+The alternation plus lazy quantifier make this pattern very slow.
+
+48
+00:03:16.9 --> 00:03:19.6
+Imagine you have a big document and a complex regular
+
+49
+00:03:19.9 --> 00:03:23.2
+expression to find matches in it, that span across multiple
+
+50
+00:03:23.4 --> 00:03:29.1
+lines. When you use this pattern in that big pattern several
+
+51
+00:03:29.4 --> 00:03:33.9
+times and somewhere closer to the start than to the end of
+
+52
+00:03:34.0 --> 00:03:34.5
+the regex,
+
+53
+00:03:35.2 --> 00:03:38.3
+performance issues like catastrophic backtracking are imminent.
+
+54
+00:03:39.0 --> 00:03:42.9
+There's been a StackOverflow question asking why this regular
+
+55
+00:03:43.1 --> 00:03:44.0
+expression is so slow.
+
+56
+00:03:45.2 --> 00:03:48.8
+The answer is not just "Don't use regular expressions to parse HTML".
+
+57
+00:03:48.8 --> 00:03:52.1
+These "(?:.|\s)*?" patterns in the pattern
+
+58
+00:03:52.3 --> 00:03:55.4
+were also to blame for the performance problems.
+
+59
+00:03:56.8 --> 00:04:00.1
+You can also see this StackOverflow question with my answer
+
+60
+00:04:00.9 --> 00:04:05.2
+explaining the problems with all these alternation patterns.
+
+61
+00:04:07.5 --> 00:04:12.7
+Now the rule of thumb is just use the dot and the appropriate flag
+
+62
+00:04:12.7 --> 00:04:16.1
+to make these dots match any characters including
+
+63
+00:04:16.1 --> 00:04:17.4
+linebreak characters.
+
+64
+00:04:18.9 --> 00:04:21.8
+To get more information about this topic, please follow the
+
+65
+00:04:21.9 --> 00:04:23.2
+links in the FURTHER LINKS section.
+
+66
+00:04:24.5 --> 00:04:26.8
+If you liked my video, please click "Like" and don't forget
+
+67
+00:04:27.0 --> 00:04:28.9
+to subscribe to my channel if you haven't done it yet.
+
+68
+00:04:29.5 --> 00:04:31.9
+Thank you for watching and happy regexing.
