@@ -1,0 +1,235 @@
+1
+00:00:04.9 --> 00:00:05.0
+Hello,
+
+2
+00:00:05.3 --> 00:00:07.9
+in this video we are going to speak about branch reset groups.
+
+3
+00:00:08.9 --> 00:00:11.8
+For example, we want to match keys and values while capturing
+
+4
+00:00:12.2 --> 00:00:15.2
+keys into Group 1 and all values into Group 2.
+
+5
+00:00:16.6 --> 00:00:21.6
+However, the problem might arise when our values can contain whitespace.
+
+6
+00:00:22.8 --> 00:00:24.3
+Let's have a look at this pattern.
+
+7
+00:00:24.6 --> 00:00:28.4
+It captures any one or more word characters into Group 1 first,
+
+8
+00:00:28.4 --> 00:00:31.1
+then it matches an equals sign.
+
+9
+00:00:31.7 --> 00:00:35.2
+Then we define a branch reset group with the help of an open
+
+10
+00:00:35.2 --> 00:00:38.0
+parentheses, a question mark, and a pipe symbol.
+
+11
+00:00:40.0 --> 00:00:43.5
+Then we define the first alternative that matches any strings
+
+12
+00:00:43.9 --> 00:00:48.2
+in between double quotation marks while capturing everything
+
+13
+00:00:48.5 --> 00:00:52.8
+that is in between the double quotation marks into group 2.
+
+14
+00:00:53.0 --> 00:00:57.6
+Then we define the second alternative, and there is
+
+15
+00:00:57.8 --> 00:01:03.1
+also Group 2 pattern that matches one or more non-whitespace characters.
+
+16
+00:01:03.9 --> 00:01:10.0
+Thanks to the branch reset group here we define two groups
+
+17
+00:01:10.3 --> 00:01:14.2
+in different alternatives that share the same ID.
+
+18
+00:01:14.8 --> 00:01:19.2
+Second capturing group, and this is also a second capturing
+
+19
+00:01:19.6 --> 00:01:23.2
+group. This is very handy because that helps you get rid
+
+20
+00:01:23.3 --> 00:01:26.0
+of unnecessary captures in your match results.
+
+21
+00:01:27.2 --> 00:01:29.6
+Have a look at the match information here on the right.
+
+22
+00:01:30.2 --> 00:01:34.4
+You've got Group 1, Group 2, Group 1, Group 2.
+
+23
+00:01:35.7 --> 00:01:37.0
+No intermediate values.
+
+24
+00:01:38.4 --> 00:01:41.5
+If we used a capturing group instead of the branch reset
+
+25
+00:01:41.8 --> 00:01:47.3
+group in the pattern, we would capture this value into group 3
+
+26
+00:01:47.4 --> 00:01:50.8
+and this value with a whitespace into Group 2.
+
+27
+00:01:52.3 --> 00:01:55.3
+Our match information on the right shows this difference.
+
+28
+00:01:56.0 --> 00:02:01.2
+We match "key" into Group 1 and "value" into Group 3 when
+
+29
+00:02:01.3 --> 00:02:05.8
+we get the first match and we get "key_2" into Group 1
+
+30
+00:02:06.3 --> 00:02:10.0
+and "Value 2" into Group 2 when we get the second match.
+
+31
+00:02:11.6 --> 00:02:15.0
+So as you have already understood, alternatives inside the
+
+32
+00:02:15.1 --> 00:02:19.5
+branch reset group share the same capturing group IDs.
+
+33
+00:02:20.0 --> 00:02:25.7
+This is supported by such regex libraries as PCRE, Boost, Onigmo.
+
+34
+00:02:26.2 --> 00:02:29.9
+It is also supported by the Python PyPi regex library.
+
+35
+00:02:31.0 --> 00:02:35.6
+Let's have a look at the Python demo. So, we have defined
+
+36
+00:02:35.9 --> 00:02:42.4
+the text here, the pattern and we are trying to use the "re" library.
+
+37
+00:02:43.5 --> 00:02:46.7
+However, this construct, the branch reset groups, are not
+
+38
+00:02:47.0 --> 00:02:48.5
+supported. Let's have a look.
+
+39
+00:02:50.3 --> 00:02:51.1
+We have an exception.
+
+40
+00:02:53.0 --> 00:03:01.7
+If we use "regex" library and use the "regex.findall" method,
+
+41
+00:03:05.4 --> 00:03:08.0
+we've got the necessary values here in the result.
+
+42
+00:03:10.3 --> 00:03:12.0
+Now let's switch to an R demo.
+
+43
+00:03:15.1 --> 00:03:16.4
+We define the text variable.
+
+44
+00:03:16.9 --> 00:03:18.8
+We define the pattern with our regex.
+
+45
+00:03:20.6 --> 00:03:27.8
+We've got all our matches using "regmatches" function and
+
+46
+00:03:28.8 --> 00:03:34.6
+"gregexec" using the "perl=TRUE" argument to actually use
+
+47
+00:03:34.8 --> 00:03:42.1
+PCRE regex engine, and now we're going to see our captured
+
+48
+00:03:42.4 --> 00:03:48.2
+values. Unfortunately, this regex construct is not so universal.
+
+49
+00:03:49.2 --> 00:03:53.6
+If you want to have an equivalent in regex flavors that do not support it
+
+50
+00:03:53.8 --> 00:03:57.4
+mind that you usually can traverse the match results after
+
+51
+00:03:57.6 --> 00:04:01.7
+you get all of them with the appropriate function and then
+
+52
+00:04:02.4 --> 00:04:05.6
+you can check which group matched and which group did not
+
+53
+00:04:05.8 --> 00:04:11.3
+match and recombine the results into the list or array.
+
+54
+00:04:12.7 --> 00:04:15.3
+You can see the explanation of the pattern on the right,
+
+55
+00:04:15.3 --> 00:04:17.3
+you can read more about this construct
+
+56
+00:04:17.3 --> 00:04:20.0
+if you follow the links in the FURTHER LINKS section and if
+
+57
+00:04:20.0 --> 00:04:22.4
+you liked my video, please click "Like" and don't forget to
+
+58
+00:04:22.6 --> 00:04:25.2
+subscribe to my channel if you haven't done it yet.
+
+59
+00:04:25.3 --> 00:04:27.2
+Thank you for watching and happy regexing.
