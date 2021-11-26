@@ -1,351 +1,467 @@
 1
 00:00:04.2 --> 00:00:09.3
 Hello, today's video topic is adaptive or dynamic word boundaries.
+
 2
 00:00:09.4 --> 00:00:12.5
 In one of the previous videos, I have already explained the
+
 3
 00:00:12.6 --> 00:00:17.1
 word, whitespace, numeric, and unambiguous word boundaries.
+
 4
 00:00:17.3 --> 00:00:20.1
 There are cases when the strings that we want to match as
+
 5
 00:00:20.1 --> 00:00:24.2
 whole words actually come in as user-defined entries.
+
 6
 00:00:24.4 --> 00:00:28.5
 The strings that we don't have control of. In these cases,
+
 7
 00:00:28.6 --> 00:00:32.6
 it is very important to know if there are special characters,
+
 8
 00:00:33.2 --> 00:00:37.5
 especially at the beginning and at the end of those entries.
+
 9
 00:00:38.3 --> 00:00:40.6
 Please recall what word boundaries are.
+
 10
 00:00:40.7 --> 00:00:43.7
 So these are positions before the first character in the
+
 11
 00:00:43.7 --> 00:00:46.8
 string if the first character is a word character or it's
+
 12
 00:00:46.8 --> 00:00:49.5
 a position after the last character in the string, if the
+
 13
 00:00:49.5 --> 00:00:53.2
 last character is a word character or between two characters
+
 14
 00:00:53.2 --> 00:00:55.9
 in the string where one is a word character and the other
+
 15
 00:00:55.9 --> 00:00:57.6
 is not a word character.
+
 16
 00:00:57.9 --> 00:01:00.4
 Now let's have a look at our test cases.
+
 17
 00:01:00.6 --> 00:01:08.7
 We want to match several words like "#hash_tag", "his head",
+
 18
 00:01:08.7 --> 00:01:17.6
 "df$str", "C++" or "C#", and we want to match them as whole words.
+
 19
 00:01:17.6 --> 00:01:23.0
 In this case, words consist of both word characters, like
+
 20
 00:01:23.0 --> 00:01:29.1
 letters or underscore, and non-word characters, like this pound
+
 21
 00:01:29.2 --> 00:01:33.4
 symbol, or space, or dollar symbol, or plus.
+
 22
 00:01:35.1 --> 00:01:37.0
 So what to do in this case?
+
 23
 00:01:37.2 --> 00:01:41.7
 In this case, we can use the so-called adaptive or dynamic
+
 24
 00:01:41.8 --> 00:01:43.0
 word boundaries.
+
 25
 00:01:43.1 --> 00:01:48.4
 There are two possible ways to actually implement these boundaries.
+
 26
 00:01:48.8 --> 00:01:52.9
 The first type of adaptive or dynamic word boundary is a
+
 27
 00:01:52.9 --> 00:01:55.9
 boundary when we only want to make sure there is a word boundary
+
 28
 00:01:56.0 --> 00:02:00.9
 position on the left if the first character of our search
+
 29
 00:02:01.0 --> 00:02:06.9
 phrase is a word character, so in this case you can see that
+
 30
 00:02:07.0 --> 00:02:13.9
 only this "#hash_tag" word starting with the hash symbol is not
+
 31
 00:02:14.6 --> 00:02:16.9
 the entry that we are interested in.
+
 32
 00:02:18.0 --> 00:02:23.0
 So, here, "his head", "df$str", "C++", and "C#"
+
 33
 00:02:23.1 --> 00:02:26.5
 are the words that we want to make sure there is a word boundary
+
 34
 00:02:26.5 --> 00:02:30.7
 right before them because they all start with a word character.
+
 35
 00:02:31.0 --> 00:02:37.6
 Here, letters. And that means we are using this construction
+
 36
 00:02:37.7 --> 00:02:44.3
 here: word boundary that is followed immediately with a word
+
 37
 00:02:44.3 --> 00:02:51.6
 character. In case of "#hash_tag" here that starts with a non-word
+
 38
 00:02:51.6 --> 00:02:56.1
 character, we don't need to check if there's a word boundary
+
 39
 00:02:56.2 --> 00:02:57.3
 right before it.
+
 40
 00:02:57.9 --> 00:03:03.2
 That's why we have this alternative that matches a position
+
 41
 00:03:03.3 --> 00:03:06.6
 that is not immediately followed with a word character.
+
 42
 00:03:06.8 --> 00:03:11.3
 If there is a non-word character immediately on the right,
+
 43
 00:03:12.2 --> 00:03:13.7
 we don't check for anything.
+
 44
 00:03:13.9 --> 00:03:17.2
 There is empty string here, as you see.
+
 45
 00:03:18.2 --> 00:03:21.1
 And here are some test cases here.
+
 46
 00:03:22.7 --> 00:03:26.8
 You can see that we matched the "C#" word,
+
 47
 00:03:27.2 --> 00:03:31.5
 we matched the "#hash_tag" that is located right after a word character,
+
 48
 00:03:31.6 --> 00:03:32.6
 but we don't care.
+
 49
 00:03:32.7 --> 00:03:38.4
 That could be a non-word character. The "here" is not matched,
+
 50
 00:03:38.4 --> 00:03:41.0
 but the "df$str" is matched.
+
 51
 00:03:41.2 --> 00:03:44.6
 Look, if we add a word character like "2" (it's a digit and
+
 52
 00:03:44.6 --> 00:03:46.1
 the digit is a word character)
+
 53
 00:03:46.2 --> 00:03:52.3
 there is no match, and "his head" is matched, but not "this head"
+
 54
 00:03:52.4 --> 00:03:54.8
 or "this header", et cetera.
+
 55
 00:03:55.4 --> 00:03:58.9
 We can see the invalid cases are not matched correctly.
+
 56
 00:03:59.2 --> 00:04:02.9
 Now how can we achieve this using code?
+
 57
 00:04:03.9 --> 00:04:08.2
 Here is a Python Jupyter notebook that I prepared for this case.
+
 58
 00:04:08.8 --> 00:04:12.8
 Here are words that we want to match as whole words defined
+
 59
 00:04:12.8 --> 00:04:19.2
 in the "words" list, and the test cases are assigned to "no_match_in"
+
 60
 00:04:19.3 --> 00:04:22.1
 and "match_in" lists.
+
 61
 00:04:22.3 --> 00:04:24.3
 So let's run them.
+
 62
 00:04:27.0 --> 00:04:34.8
 And here is a very important block. When our words are actually
+
 63
 00:04:34.8 --> 00:04:39.0
 phrases, especially with whitespaces in between the words
+
 64
 00:04:39.0 --> 00:04:45.7
 inside them, we would need to sort the entries in the "words"
+
 65
 00:04:45.8 --> 00:04:52.1
 list by length in the descending order.
+
 66
 00:04:52.7 --> 00:04:56.9
 This is important because if you remember the order of alternatives
+
 67
 00:04:57.0 --> 00:04:59.9
 in NFA regex always matters.
+
 68
 00:05:00.1 --> 00:05:05.0
 The first alternative that matches "wins" and the other
+
 69
 00:05:05.1 --> 00:05:09.6
 alternatives on the right are not processed.
+
 70
 00:05:09.7 --> 00:05:11.8
 They are not even checked at all.
+
 71
 00:05:11.9 --> 00:05:16.3
 And that means we want to make sure that the longest alternative
+
 72
 00:05:16.4 --> 00:05:23.6
 is placed to the left or before all the shorter alternatives.
+
 73
 00:05:24.0 --> 00:05:30.2
 So in this case, this line ensures we get the longest matches
+
 74
 00:05:30.2 --> 00:05:32.1
 in our alternative.
+
 75
 00:05:34.5 --> 00:05:38.0
 So then we need to escape the "words".
+
 76
 00:05:38.4 --> 00:05:42.0
 We don't know what kind of special characters there can occur,
+
 77
 00:05:42.1 --> 00:05:46.2
 that's why we want to make sure that the regex remains valid
+
 78
 00:05:46.3 --> 00:05:50.5
 after we put the string into the regex object.
+
 79
 00:05:51.2 --> 00:05:56.0
 So the "re.escape" in Python works the same as "Pattern.quote" in
+
 80
 00:05:56.0 --> 00:06:01.1
 Java or "preg_quote" in PHP, and so on.
+
 81
 00:06:02.0 --> 00:06:08.4
 And next we compile the pattern that contains our Type 1
+
 82
 00:06:09.1 --> 00:06:17.9
 dynamic word boundary. And this is "re.I" option that enables
+
 83
 00:06:18.0 --> 00:06:20.7
 case insensitive matching in Python ("re").
+
 84
 00:06:20.9 --> 00:06:27.0
 So if we run this, we'll see that we've got this list of
+
 85
 00:06:27.1 --> 00:06:31.6
 keywords, we escape them correctly
+
 86
 00:06:31.7 --> 00:06:34.6
 (you see all special characters are escaped)...
+
 87
 00:06:34.8 --> 00:06:38.4
 A space is also a special character when you use the "re.VERBOSE"
+
 88
 00:06:38.5 --> 00:06:44.3
 mode, and here is the regex pattern that we have just compiled.
+
 89
 00:06:44.7 --> 00:06:54.8
 Next, we want to see if there is any match in "no_match_in" list and we get "false".
+
 90
 00:06:54.9 --> 00:07:02.0
 There is no match in this list, and in this block we want
+
 91
 00:07:02.0 --> 00:07:10.5
 to see if all regular expressions find a match in "match_in" and it's
+
 92
 00:07:10.6 --> 00:07:16.1
 "true". All strings from "match_in" list match the current regex
+
 93
 00:07:16.2 --> 00:07:20.7
 pattern. Let's come back to our regex fiddle.
+
 94
 00:07:21.1 --> 00:07:26.0
 Now let's speak about the second type of the dynamic or adaptive word boundaries.
+
 95
 00:07:26.8 --> 00:07:30.3
 This is the case when we want to make sure there is no word
+
 96
 00:07:30.3 --> 00:07:37.9
 character right before a special character that is at the
+
 97
 00:07:37.9 --> 00:07:41.9
 start of our keyword, or make sure that there is no word
+
 98
 00:07:42.0 --> 00:07:46.9
 character after the last non-word character in our keyword.
+
 99
 00:07:47.1 --> 00:07:51.6
 In this case, all we need to do is add a non-word boundary
+
 100
 00:07:51.9 --> 00:07:54.8
 construct right before the negative
+
 101
 00:07:54.9 --> 00:07:59.8
 lookahead that checks for a word character here and add
+
 102
 00:07:59.9 --> 00:08:05.9
 this construct here at the end that checks that there is
+
 103
 00:08:06.0 --> 00:08:10.0
 no word character at the end of our keyword.
+
 104
 00:08:11.0 --> 00:08:15.1
 In this case we introduce more restrictions.
+
 105
 00:08:15.2 --> 00:08:21.1
 In this case we make sure, for example, that if you want
+
 106
 00:08:21.1 --> 00:08:30.9
 to match a (Twitter) mention, for example "@mail.com"
+
 107
 00:08:30.9 --> 00:08:39.1
 (and we have "@mail.com" here), but we don't want to match
+
 108
 00:08:39.2 --> 00:08:42.6
 it as part of an email, like this.
+
 109
 00:08:44.1 --> 00:08:48.8
 So in this case, a non-word boundary should be added to the
+
 110
 00:08:48.9 --> 00:08:52.7
 dynamic or adaptive word boundary construct.
+
 111
 00:08:53.6 --> 00:08:56.7
 If you want to see the pattern meaning, you can always check
+
 112
 00:08:56.7 --> 00:08:58.8
 the explanation on the right here.
+
 113
 00:08:59.0 --> 00:09:01.3
 You may read more about these issues.
+
 114
 00:09:01.5 --> 00:09:04.5
 If you follow the links in the FURTHER LINKS section, and if
+
 115
 00:09:04.5 --> 00:09:07.0
 you like my video, please click "Like" and subscribe to my
+
 116
 00:09:07.0 --> 00:09:09.4
 channel if you haven't done it yet. Thank you for watching
+
 117
 00:09:09.5 --> 00:09:11.0
 and happy regexing!
