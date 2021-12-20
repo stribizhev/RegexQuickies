@@ -1,0 +1,499 @@
+1
+00:00:04.7 --> 00:00:04.9
+Hello.
+
+2
+00:00:05.0 --> 00:00:07.6
+In this video we are going to speak about regex tries.
+
+3
+00:00:08.6 --> 00:00:10.7
+When we have a list of words to match,
+
+4
+00:00:10.8 --> 00:00:14.8
+we usually concatenate them using a pipe symbol.
+
+5
+00:00:15.1 --> 00:00:18.4
+A pipe symbol is an alternation operator in regex.
+
+6
+00:00:19.1 --> 00:00:22.9
+However, when we build dynamic regular expressions using a
+
+7
+00:00:22.9 --> 00:00:26.5
+list of words that is supplied by some user
+
+8
+00:00:26.6 --> 00:00:29.0
+and we do not know beforehand what these words
+
+9
+00:00:29.1 --> 00:00:32.8
+look like, we need to be very careful. Why?
+
+10
+00:00:33.7 --> 00:00:37.6
+You know that in an NFA regex alternations are
+
+11
+00:00:37.6 --> 00:00:40.6
+processed from left to right and the first alternative
+
+12
+00:00:40.7 --> 00:00:43.9
+"wins" and the others are not processed.
+
+13
+00:00:44.2 --> 00:00:48.4
+However, an alternation group is only efficient
+
+14
+00:00:48.6 --> 00:00:52.0
+when each alternative cannot match at the
+
+15
+00:00:52.0 --> 00:00:54.0
+same position inside the string.
+
+16
+00:00:54.1 --> 00:00:56.1
+If one or more alternatives can match at the
+
+17
+00:00:56.1 --> 00:00:59.6
+same position inside the string, backtracking can come into
+
+18
+00:00:59.6 --> 00:01:04.4
+play and ruin the whole performance. The more there
+
+19
+00:01:04.4 --> 00:01:06.6
+are alternatives that can match at the same position
+
+20
+00:01:06.6 --> 00:01:10.0
+inside the string, the less efficient is the pattern.
+
+21
+00:01:10.4 --> 00:01:12.8
+Now, let's have a look at a concrete example.
+
+22
+00:01:13.5 --> 00:01:16.4
+You can see an input string like this:
+
+23
+00:01:16.6 --> 00:01:18.0
+"Afoos,foo,food,
+
+24
+00:01:18.0 --> 00:01:23.6
+fool-foolish, foods". So, the initial naive attempt to match these
+
+25
+00:01:23.7 --> 00:01:27.9
+words would be to construct a regular expression based on
+
+26
+00:01:28.0 --> 00:01:31.9
+this list of words that will look like this.
+
+27
+00:01:32.6 --> 00:01:36.0
+And you can see a test at regex101.com
+
+28
+00:01:36.0 --> 00:01:40.7
+that we match all these strings, not as whole
+
+29
+00:01:40.7 --> 00:01:45.5
+words inside the string, and it takes about 29 steps.
+
+30
+00:01:45.7 --> 00:01:47.5
+However, you can see that the result is
+
+31
+00:01:47.6 --> 00:01:51.8
+not expected because in the word "food", we
+
+32
+00:01:51.8 --> 00:01:54.9
+would like to match "food" and not "foo".
+
+33
+00:01:57.1 --> 00:02:01.3
+That's why we might want to try Solution 2.
+
+34
+00:02:01.4 --> 00:02:04.1
+Here, the words in the list are sorted
+
+35
+00:02:04.1 --> 00:02:07.0
+by length in the descending order and
+
+36
+00:02:07.1 --> 00:02:10.4
+put into the regular expression like this.
+
+37
+00:02:11.2 --> 00:02:14.4
+Now let's have a test and we
+
+38
+00:02:14.5 --> 00:02:17.6
+see that now we matched "food",
+
+39
+00:02:18.8 --> 00:02:21.1
+"foolish" fully.
+
+40
+00:02:22.2 --> 00:02:25.0
+However, we see that we also matched "foo"
+
+41
+00:02:25.1 --> 00:02:28.6
+in "Afoos" and this is not expected.
+
+42
+00:02:29.4 --> 00:02:31.3
+We need word boundaries.
+
+43
+00:02:31.9 --> 00:02:33.4
+Good, Solution #3.
+
+44
+00:02:33.5 --> 00:02:36.5
+Words are sorted by length in descending order
+
+45
+00:02:36.5 --> 00:02:41.0
+inside the list and we added word boundaries here.
+
+46
+00:02:41.5 --> 00:02:43.8
+So in Python we can build this
+
+47
+00:02:43.9 --> 00:02:48.3
+regular expression using this code and the
+
+48
+00:02:48.4 --> 00:02:52.8
+regular expression looks like this now. Good.
+
+49
+00:02:54.4 --> 00:02:56.5
+You can see there are correct matches.
+
+50
+00:02:56.7 --> 00:03:02.5
+"Afoos" does not match, but it still takes 92 steps
+
+51
+00:03:02.6 --> 00:03:08.2
+and you can see that each alternative here starts with the
+
+52
+00:03:08.2 --> 00:03:13.9
+same prefix, "foo", you can see here as well.
+
+53
+00:03:14.2 --> 00:03:19.5
+So this is where regex tries come into play.
+
+54
+00:03:20.1 --> 00:03:24.7
+Have a look at this example here and the test.
+
+55
+00:03:25.3 --> 00:03:29.2
+You can see that it took 67 steps for this
+
+56
+00:03:29.2 --> 00:03:32.7
+regular expression to find all matches in the string. You
+
+57
+00:03:32.8 --> 00:03:36.1
+can see that "foo" is only tried once.
+
+58
+00:03:36.3 --> 00:03:43.6
+Then we can only try "l" or "d", after "d" there is an optional
+
+59
+00:03:43.7 --> 00:03:48.7
+"s" and after "l" there is an optional "ish" substring.
+
+60
+00:03:48.9 --> 00:03:51.7
+So what is a trie?
+
+61
+00:03:52.1 --> 00:03:54.9
+A trie is a kind of a tree data structure
+
+62
+00:03:55.0 --> 00:03:58.8
+used for locating specific keys from within a set.
+
+63
+00:03:59.1 --> 00:04:02.8
+So these keys are in our case, of course, strings
+
+64
+00:04:03.2 --> 00:04:06.7
+and there are links between nodes in this trie
+
+65
+00:04:06.8 --> 00:04:09.3
+that are defined not by the entire key but
+
+66
+00:04:09.3 --> 00:04:14.0
+by individual characters, or in our case, subpatterns.
+
+67
+00:04:14.2 --> 00:04:17.1
+So, this is a trie here for keys
+
+68
+00:04:17.2 --> 00:04:23.4
+"A", "to", "te", "ted", "ten", "i", "in" and "inn".
+
+69
+00:04:23.5 --> 00:04:25.6
+A regex trie is a regular expression that is built in a tree-
+
+70
+00:04:25.7 --> 00:04:29.4
+like way, so you can have a look here.
+
+71
+00:04:30.4 --> 00:04:32.8
+How can we build such patterns?
+
+72
+00:04:33.0 --> 00:04:35.4
+Usually, there are such specific libraries
+
+73
+00:04:35.4 --> 00:04:37.9
+that help you create regex tries.
+
+74
+00:04:38.1 --> 00:04:39.7
+For example, in Python, you can
+
+75
+00:04:39.7 --> 00:04:41.9
+use the trieregex library.
+
+76
+00:04:42.1 --> 00:04:43.7
+You can see it here.
+
+77
+00:04:46.0 --> 00:04:49.5
+All you need to do is to install this library using
+
+78
+00:04:49.5 --> 00:04:55.6
+"pip install trieregex", and then you can build your patterns using
+
+79
+00:04:56.1 --> 00:05:00.1
+this library in a very simple and short way.
+
+80
+00:05:00.9 --> 00:05:03.2
+However, you can also use other
+
+81
+00:05:03.4 --> 00:05:05.3
+ways to build regex tries
+
+82
+00:05:05.4 --> 00:05:09.3
+and one of these ways is described in this
+
+83
+00:05:09.4 --> 00:05:14.0
+StackOverflow answer, in a "Speed up
+
+84
+00:05:14.0 --> 00:05:18.5
+millions of regex replacements in Python 3" post, which
+
+85
+00:05:18.5 --> 00:05:23.9
+is really very-very nice and highly customizable.
+
+86
+00:05:27.7 --> 00:05:29.8
+Now let's continue with our testing.
+
+87
+00:05:30.2 --> 00:05:34.0
+I have found some arbitrary text on the Internet and
+
+88
+00:05:34.1 --> 00:05:38.4
+it will be our sample input text. In order to
+
+89
+00:05:38.5 --> 00:05:42.2
+make our test more close to real life situations,
+
+90
+00:05:42.3 --> 00:05:44.6
+scenarios, I decided to extract
+
+91
+00:05:44.6 --> 00:05:46.0
+all words from this text.
+
+92
+00:05:46.1 --> 00:05:50.0
+That's why I'm using this part of code here with "re.findall",
+
+93
+00:05:50.1 --> 00:05:53.6
+and you can see all the words extracted here.
+
+94
+00:05:54.1 --> 00:05:55.7
+So there are a lot of words.
+
+95
+00:05:55.8 --> 00:05:57.0
+Some of them start with the
+
+96
+00:05:57.1 --> 00:05:59.4
+same letters, some of them don't.
+
+97
+00:05:59.5 --> 00:06:03.4
+So this is really close to the situations
+
+98
+00:06:03.4 --> 00:06:06.9
+you might come across in your real life.
+
+99
+00:06:07.7 --> 00:06:09.6
+So we build two patterns.
+
+100
+00:06:09.7 --> 00:06:12.2
+One of them is not trie-based,
+
+101
+00:06:12.3 --> 00:06:14.7
+and the other one is trie-based.
+
+102
+00:06:15.4 --> 00:06:21.2
+We compile them and you can see the patterns here.
+
+103
+00:06:23.6 --> 00:06:29.1
+So trie regexps look very cryptic, but in
+
+104
+00:06:29.1 --> 00:06:32.2
+fact, that's why they are much more efficient
+
+105
+00:06:32.3 --> 00:06:36.8
+in the end. In this block, I benchmarked the
+
+106
+00:06:36.9 --> 00:06:40.3
+two regular expressions using the Python "re" library.
+
+107
+00:06:40.5 --> 00:06:43.8
+You can see that I ran each of them
+
+108
+00:06:44.0 --> 00:06:49.3
+10,000 times and it took the first pattern longer
+
+109
+00:06:49.4 --> 00:06:54.1
+than the second pattern, which means that the trie
+
+110
+00:06:54.2 --> 00:06:59.1
+pattern is more efficient than the regular expression
+
+111
+00:06:59.2 --> 00:07:00.8
+that is not trie-based.
+
+112
+00:07:01.5 --> 00:07:04.3
+Trie-based regular expressions are very efficient
+
+113
+00:07:04.4 --> 00:07:08.2
+to match very-very long lists of words
+
+114
+00:07:08.3 --> 00:07:11.6
+and even such things as emojis.
+
+115
+00:07:11.7 --> 00:07:15.7
+For example, you can see this post at
+
+116
+00:07:15.7 --> 00:07:19.6
+StackOverflow where all current emojis can be
+
+117
+00:07:19.7 --> 00:07:22.8
+matched and extracted using a huge pattern,
+
+118
+00:07:23.7 --> 00:07:27.0
+but this pattern is still quite efficient
+
+119
+00:07:27.1 --> 00:07:28.9
+when you use it in your code.
+
+120
+00:07:29.0 --> 00:07:31.3
+You can learn more about this construct if
+
+121
+00:07:31.3 --> 00:07:33.2
+you follow the links in this FURTHER LINKS
+
+122
+00:07:33.3 --> 00:07:35.3
+section, and if you liked my video, please
+
+123
+00:07:35.4 --> 00:07:36.9
+click "Like" and subscribe to my channel
+
+124
+00:07:37.0 --> 00:07:38.3
+if you haven't done it yet.
+
+125
+00:07:38.4 --> 00:07:40.3
+Thank you for watching and happy regexing.
