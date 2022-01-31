@@ -1,0 +1,367 @@
+1
+00:00:04.7 --> 00:00:07.6
+Hello. In this video, we are going to speak about
+
+2
+00:00:07.6 --> 00:00:12.1
+(*SKIP)(*FAIL) verbs that can be used in PCRE regular expressions.
+
+3
+00:00:12.2 --> 00:00:13.1
+Let's have a look.
+
+4
+00:00:13.2 --> 00:00:15.3
+Suppose we have a task to match any
+
+5
+00:00:15.4 --> 00:00:20.4
+integer numbers that are not located inside parentheses.
+
+6
+00:00:20.9 --> 00:00:25.1
+In this case, we can use the following regular expression
+
+7
+00:00:25.3 --> 00:00:33.1
+in PCRE regex flavor... So, you can see that we first
+
+8
+00:00:33.3 --> 00:00:39.1
+match any string in between parentheses and then skip it
+
+9
+00:00:39.2 --> 00:00:44.1
+and match one or more digits in any other context.
+
+10
+00:00:44.8 --> 00:00:48.0
+So what do these PCRE verbs mean?
+
+11
+00:00:48.5 --> 00:00:52.4
+(*SKIP) means that the engine advances to the
+
+12
+00:00:52.5 --> 00:00:55.5
+string position corresponding to the place in the pattern
+
+13
+00:00:55.5 --> 00:00:58.8
+where (*SKIP) was encountered and starts
+
+14
+00:00:58.8 --> 00:01:00.8
+a new match attempt at that position.
+
+15
+00:01:02.2 --> 00:01:07.3
+(*F) or (*FAIL) signals failure to the regex
+
+16
+00:01:07.4 --> 00:01:12.0
+engine, triggering backtracking if applicable, or fails
+
+17
+00:01:12.0 --> 00:01:14.4
+the whole match if no backtracking is possible.
+
+18
+00:01:14.6 --> 00:01:17.9
+For example, when the pattern has no plus
+
+19
+00:01:18.0 --> 00:01:22.7
+or asterisk quantifiers nor alternations, meaning there is no way
+
+20
+00:01:22.8 --> 00:01:25.5
+to re-match a string in another way.
+
+21
+00:01:25.7 --> 00:01:28.6
+What if you want to exclude more contexts?
+
+22
+00:01:29.3 --> 00:01:31.3
+You can just add a non-capturing group
+
+23
+00:01:31.3 --> 00:01:34.8
+and add more alternations here. Look.
+
+24
+00:01:37.4 --> 00:01:42.4
+This pattern will match any one or more digits
+
+25
+00:01:42.9 --> 00:01:47.6
+that are not in between the closest double quotation
+
+26
+00:01:47.6 --> 00:01:52.6
+marks, single quotation marks, parentheses, and square brackets.
+
+27
+00:01:53.1 --> 00:01:58.4
+Note that this (*FAIL) verb is actually equal
+
+28
+00:01:58.5 --> 00:02:03.2
+to a negative lookahead with an empty pattern because
+
+29
+00:02:03.2 --> 00:02:08.5
+it also fails the match at this current location and triggers backtracking.
+
+30
+00:02:08.7 --> 00:02:13.3
+Note that these verbs are available in PCRE regex library
+
+31
+00:02:13.3 --> 00:02:17.5
+and can be used in Perl, in R,
+
+32
+00:02:17.5 --> 00:02:25.1
+in PHP, in Elixir, in Python (if you use PyPi regex library) and C#
+
+33
+00:02:25.2 --> 00:02:30.3
+if you use the PCRE.NET library. Let's have a look at the Python code demo.
+
+34
+00:02:30.4 --> 00:02:34.0
+I already installed the PyPi regex library
+
+35
+00:02:34.1 --> 00:02:38.5
+and can import it using "import regex".
+
+36
+00:02:39.5 --> 00:02:46.8
+Let's define the text variable and now let's find
+
+37
+00:02:46.9 --> 00:02:51.6
+all these integer numbers that are not inside parentheses.
+
+38
+00:02:52.7 --> 00:02:53.9
+Here's the result.
+
+39
+00:02:55.0 --> 00:02:58.9
+Now let's try our more advanced pattern.
+
+40
+00:03:01.3 --> 00:03:05.4
+So we skip any strings between single quotes
+
+41
+00:03:05.5 --> 00:03:08.0
+with no single quotes in between, any strings between double
+
+42
+00:03:08.1 --> 00:03:10.8
+quotes with no double quotes in between, any strings
+
+43
+00:03:10.8 --> 00:03:14.0
+between parentheses with no parentheses in between, and any
+
+44
+00:03:14.0 --> 00:03:17.0
+strings between square brackets with no other square brackets
+
+45
+00:03:17.0 --> 00:03:23.3
+in between, and we get just the two numbers, 10 and 7000.
+
+46
+00:03:23.3 --> 00:03:25.3
+Since many other regex flavors do not support
+
+47
+00:03:25.4 --> 00:03:29.4
+(*SKIP) and (*FAIL), we can resort to various workarounds.
+
+48
+00:03:29.9 --> 00:03:32.4
+A lot depends on what we want to do with the matches:
+
+49
+00:03:32.5 --> 00:03:36.0
+extract, remove, replace, or split.
+
+50
+00:03:36.1 --> 00:03:38.0
+Your code will depend on this.
+
+51
+00:03:38.2 --> 00:03:40.6
+Let's have a look at the JavaScript demo.
+
+52
+00:03:41.0 --> 00:03:43.6
+Here, we want to replace integers
+
+53
+00:03:43.7 --> 00:03:46.0
+that are outside parentheses.
+
+54
+00:03:46.8 --> 00:03:51.7
+So we first capture the parentheses, or we match
+
+55
+00:03:51.7 --> 00:03:55.1
+digits in any other context, and we return
+
+56
+00:03:55.1 --> 00:04:00.2
+the captured substring if it was captured, or we return
+
+57
+00:04:00.3 --> 00:04:04.4
+a match with angle brackets. If we want to
+
+58
+00:04:04.4 --> 00:04:07.9
+remove integer numbers that are not in between parentheses,
+
+59
+00:04:08.0 --> 00:04:10.8
+we just use this code in JavaScript.
+
+60
+00:04:11.0 --> 00:04:14.6
+We replace the match with backreference to Group 1
+
+61
+00:04:14.7 --> 00:04:19.0
+value and a Group 1 value is the substring
+
+62
+00:04:19.4 --> 00:04:24.4
+in between parentheses, all other integer numbers will be removed.
+
+63
+00:04:24.9 --> 00:04:29.0
+Have a look. Extracting is a bit more intricate.
+
+64
+00:04:29.5 --> 00:04:33.4
+For example, we can capture all integer numbers that
+
+65
+00:04:33.5 --> 00:04:38.1
+are not inside parentheses and we only get
+
+66
+00:04:38.1 --> 00:04:44.1
+Group 1 values and filter out all other undefined values
+
+67
+00:04:44.1 --> 00:04:47.6
+that result from the "matchAll" operation.
+
+68
+00:04:48.4 --> 00:04:52.3
+So we only get 10 and 7000 as expected.
+
+69
+00:04:52.4 --> 00:04:54.0
+Splitting is the most complicated
+
+70
+00:04:54.0 --> 00:04:56.1
+operation in these scenarios.
+
+71
+00:04:56.5 --> 00:04:59.3
+For example, we can use this code.
+
+72
+00:04:59.4 --> 00:05:02.7
+Here, we define a regular expression that captures strings
+
+73
+00:05:02.8 --> 00:05:05.5
+between parentheses into Group 1 or matches one
+
+74
+00:05:05.5 --> 00:05:07.7
+or more digits in any other contexts.
+
+75
+00:05:07.8 --> 00:05:09.9
+Then we start matching.
+
+76
+00:05:10.2 --> 00:05:13.0
+Once there is a match where Group 1 didn't
+
+77
+00:05:13.0 --> 00:05:18.6
+participate in the match, we push a substring of
+
+78
+00:05:18.7 --> 00:05:23.0
+the input string into the resulting array, beginning with
+
+79
+00:05:23.0 --> 00:05:26.4
+the offset that we update every time
+
+80
+00:05:26.5 --> 00:05:29.0
+there is a match where Group 1 didn't
+
+81
+00:05:29.1 --> 00:05:31.1
+participate in the match.
+
+82
+00:05:31.1 --> 00:05:36.0
+At the end, if the offset is still smaller than the length
+
+83
+00:05:36.1 --> 00:05:40.6
+of the text, we need to add the remaining
+
+84
+00:05:40.7 --> 00:05:43.8
+part of the string into the resulting array
+
+85
+00:05:45.0 --> 00:05:48.9
+and the result is the expected three chunks.
+
+86
+00:05:49.1 --> 00:05:50.4
+You can see the explanation of
+
+87
+00:05:50.4 --> 00:05:51.6
+the pattern on the right,
+
+88
+00:05:51.7 --> 00:05:54.7
+you can learn more about (*SKIP)(*FAIL) trick if you
+
+89
+00:05:54.7 --> 00:05:56.5
+follow the links in the FURTHER LINKS section
+
+90
+00:05:56.5 --> 00:05:59.4
+and if you liked my video please click "Like" and subscribe
+
+91
+00:05:59.5 --> 00:06:01.0
+to my channel if you haven't done it yet.
+
+92
+00:06:01.1 --> 00:06:03.0
+Thank you for watching and happy regexing.
