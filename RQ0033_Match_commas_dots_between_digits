@@ -1,0 +1,114 @@
+0:00:04.880,0:00:10.720
+hello in this video we are going to speak about 
+how to match a comma or a dot when it is part
+
+0:00:10.720,0:00:16.480
+or not a part of a number. Basically, we'll be 
+speaking about how to match a dot or a comma
+
+0:00:16.480,0:00:22.240
+when it is in between digits and when it is not 
+in between digits. So, let's have a look at our
+
+0:00:22.240,0:00:28.800
+test strings. They contain commas and dots. To 
+make sure we match a comma in between digits,
+
+0:00:29.520,0:00:38.240
+we can use a positive lookbehind and a 
+positive lookahead here and we match two
+
+0:00:39.200,0:00:47.040
+commas in this first string and one comma in the 
+second string only in between digits. If we want
+
+0:00:47.040,0:00:53.200
+to match a dot we use "\." pattern here,
+and we match all dots in between digits.
+
+0:00:54.160,0:00:59.600
+If we want to match either dot or a comma in 
+between digits we'll use this character class
+
+0:00:59.600,0:01:06.880
+here, and if we want to remove everything we just 
+keep the empty string as the substitution pattern
+
+0:01:06.880,0:01:12.240
+and you see that there are no more dots 
+and commas in between digits in the output.
+
+0:01:12.240,0:01:16.400
+We can also replace them with 
+a pipe symbol, for example.
+
+0:01:17.200,0:01:22.320
+Now, let's do the opposite. Let's try and match 
+comma or dot that are not part of a number.
+
+0:01:24.320,0:01:31.120
+in this case we can't just reverse the lookarounds 
+and use negative look behind and look ahead
+
+0:01:32.000,0:01:38.080
+in this case we'll match any comma or dot 
+that is either not preceded with a digit or
+
+0:01:39.040,0:01:41.840
+not followed with a digit let's have a look
+
+0:01:43.920,0:01:49.200
+you can see that the two commas in the first 
+test string the comma between def and two and
+
+0:01:49.200,0:01:57.840
+the comma between zero and x are not matched in 
+the second test string you see that the comma
+
+0:01:57.840,0:02:05.280
+between dot and 1 is not matched these commas 
+must match because they are not part of a number
+
+0:02:06.080,0:02:16.800
+in this case we need to nest lookarounds for 
+example we match any comma or dot that are not
+
+0:02:16.800,0:02:29.760
+followed with a digit that is in its turn preceded 
+with a digit and any character now you can see
+
+0:02:29.760,0:02:38.400
+that we match the right dots and commas in 
+both test strings so once again this pattern
+
+0:02:38.400,0:02:46.960
+matches any comma or dot that is not immediately 
+followed with a digit that is immediately preceded
+
+0:02:47.520,0:02:54.800
+with a digit and any one character and remember 
+you can just match a single dot like this
+
+0:02:54.800,0:03:05.520
+or a comma like this and you may substitute the 
+matches with any other symbols or even words
+
+0:03:07.360,0:03:10.560
+if you have doubts regarding how 
+to use this pattern in your code
+
+0:03:10.560,0:03:15.360
+don't forget to check the code generated page 
+and select the language you are interested in
+
+0:03:15.920,0:03:19.920
+you can see the patent explanation on the 
+right you can find more examples like this
+
+0:03:19.920,0:03:24.640
+if you follow the links in the further links 
+section if you like my video please click like
+
+0:03:24.640,0:03:31.600
+and subscribe to my channel if you haven't done 
+it yet thank you for watching and happy relaxing
