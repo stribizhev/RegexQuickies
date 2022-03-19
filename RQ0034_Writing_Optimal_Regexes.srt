@@ -194,7 +194,7 @@ can check more tips on writing optimal regular  
 
 40
 00:04:59,360 --> 00:05:04,240
-expressions in the "FURTHERLINKS" section, 
+expressions in the "FURTHER LINKS" section, 
 and if you liked my video please click "Like"
 
 41
