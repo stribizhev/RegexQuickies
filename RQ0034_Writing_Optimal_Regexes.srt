@@ -1,0 +1,204 @@
+1
+00:00:04,400 --> 00:00:09,520
+Hello, in this video, I'm going to speak 
+about how to write clean regular expressions.
+
+2
+00:00:10,080 --> 00:00:13,440
+People often add redundant things 
+into their regular expressions.
+
+3
+00:00:14,080 --> 00:00:20,480
+Let's have a look at some examples. A lot of 
+people use a limiting quantifier with the minimum  
+
+4
+00:00:20,480 --> 00:00:27,520
+threshold set to "1" in order to match a single 
+occurrence of a character. In fact, if they use
+
+5
+00:00:29,680 --> 00:00:38,960
+this pattern they just match the same as 
+using this pattern. It means that this limiting  
+
+6
+00:00:38,960 --> 00:00:45,280
+quantifier with the minimum threshold set to "1" 
+is actually redundant. We can always remove this.
+
+7
+00:00:46,320 --> 00:00:50,640
+If you want to match a string that 
+contains a single lowercase letter  
+
+8
+00:00:51,200 --> 00:00:58,080
+you just use anchors on both ends of 
+this character class. Another example  
+
+9
+00:00:58,080 --> 00:01:06,960
+is a pattern like this which is actually 
+matching "http" string, have a look.
+
+10
+00:01:09,040 --> 00:01:12,960
+And we can write this string like this
+
+11
+00:01:15,200 --> 00:01:25,360
+or like this. Note that this pattern with a 
+limiting quantifier looks less readable. A lot of  
+
+12
+00:01:25,360 --> 00:01:31,200
+people use character classes in their patterns, for 
+example, a very simple one that matches "a", "b" or "c".
+
+13
+00:01:32,000 --> 00:01:39,500
+However, a lot of people 
+think that adding commas or pipes
+
+14
+00:01:39,840 --> 00:01:47,120
+does not matter. Well, character classes match 
+any characters that are listed inside them.
+
+15
+00:01:47,120 --> 00:01:53,680
+So, this pattern with pipes matches 
+"a", "b" or "c" or a pipe character.
+
+16
+00:01:53,680 --> 00:02:00,960
+You can easily see it here, in the test 
+strings. Or, if you use commas they will also be  
+
+17
+00:02:00,960 --> 00:02:07,840
+matched. When you use character classes make sure 
+you are using at least two patterns inside it.
+
+18
+00:02:09,120 --> 00:02:15,440
+For example, if you want to match "a" or 
+"b" you use a character class. If you use  
+
+19
+00:02:16,160 --> 00:02:24,480
+"a" inside a character class the character class 
+is redundant, all you need is just "a". So, when you  
+
+20
+00:02:24,480 --> 00:02:32,320
+use "\d" to match a digit it makes no sense 
+to put it inside square brackets. In some regex  
+
+21
+00:02:32,320 --> 00:02:38,800
+flavors it doesn't mean the same. It doesn't make 
+sense to put the "\d" inside brackets  
+
+22
+00:02:38,800 --> 00:02:45,840
+because even if you wanted to write one or more 
+digits it is enough to write "\d+".  
+
+23
+00:02:46,960 --> 00:02:54,000
+Another common regex construct that is overused 
+in patterns is groups. Remember that groups are  
+
+24
+00:02:54,000 --> 00:03:02,000
+only necessary when we want to capture a part of 
+a pattern and then use it or access it in some way,
+
+25
+00:03:02,000 --> 00:03:10,560
+or when we want to quantify a group of patterns 
+or use an alternation. In other cases, we don't need  
+
+26
+00:03:10,560 --> 00:03:18,240
+groups, so either remove unnecessary groups or turn 
+them into non-capturing groups. Now, let's have a  
+
+27
+00:03:18,240 --> 00:03:24,560
+look at a specific regular expression that can be 
+greatly simplified. Here, we can simplify a lot of  
+
+28
+00:03:24,560 --> 00:03:30,480
+things. First, character classes. Let's remove the 
+character classes around the patterns that only  
+
+29
+00:03:30,480 --> 00:03:39,680
+match a single type of character. So, whitespaces 
+here, non-whitespaces here, and so on and so forth.
+
+30
+00:03:42,640 --> 00:03:49,600
+Now, we can also remove the quantifiers that 
+only match a single occurrence of a character.
+
+31
+00:03:50,160 --> 00:03:57,520
+Here, this limiting quantifier is redundant because 
+it only matches a single occurrence of this  
+
+32
+00:03:57,520 --> 00:04:04,160
+group pattern. Also, we can see that 
+there is a non-capturing group here  
+
+33
+00:04:05,120 --> 00:04:11,680
+that does nothing: there is no alternation 
+inside it, it's not quantified, that's why we  
+
+34
+00:04:11,680 --> 00:04:18,720
+can safely remove the group here. The same 
+non-capturing group is not necessary here.
+
+35
+00:04:21,600 --> 00:04:26,320
+There are more ways to enhance this regular 
+expression pattern if we have exact requirements.
+
+36
+00:04:26,880 --> 00:04:35,040
+For example, we could match any char other than 
+round brackets between the two round brackets  
+
+37
+00:04:35,040 --> 00:04:43,920
+and it would make this expression more efficient. 
+We could also use an optional non-capturing group  
+
+38
+00:04:43,920 --> 00:04:52,880
+here making both whitespace and non-whitespace 
+patterns obligatory. Remember that you can always  
+
+39
+00:04:52,880 --> 00:04:59,360
+check the regex explanation on the right, you 
+can check more tips on writing optimal regular  
+
+40
+00:04:59,360 --> 00:05:04,240
+expressions in the "FURTHERLINKS" section, 
+and if you liked my video please click "Like"
+
+41
+00:05:04,240 --> 00:05:09,840
+and subscribe to my channel if you haven't done 
+it yet. Thank you for watching, and happy regexing.
+
