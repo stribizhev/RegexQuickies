@@ -176,15 +176,15 @@ be matched with this regular expression. Anchors,
 
 45
 00:02:15.9 --> 00:02:18.8
-they match the whole line or string.
+they match the line or string boundaries.
 
 46
 00:02:18.8 --> 00:02:20.6
-In this case, they match the whole
+In this case, they match the line
 
 47
 00:02:20.6 --> 00:02:23.3
-line because of this "m" flag here.
+boundaries because of this "m" flag here.
 
 48
 00:02:23.5 --> 00:02:25.8
