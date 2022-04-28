@@ -276,7 +276,7 @@ on the regex flavor, and if we select PCRE here,
 
 70
 00:03:35.3 --> 00:03:44.2
-we might use this patten to match a Polish letter "ł".
+we might use this pattern to match a Polish letter "ł".
 
 71
 00:03:47.0 --> 00:03:52.0
