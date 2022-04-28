@@ -1,0 +1,423 @@
+1
+00:00:04.6 --> 00:00:04.8
+Hello.
+
+2
+00:00:04.8 --> 00:00:06.1
+In this video I would like to
+
+3
+00:00:06.1 --> 00:00:08.2
+speak about regular expressions in general.
+
+4
+00:00:09.1 --> 00:00:11.2
+A lot of people asked me to record a
+
+5
+00:00:11.2 --> 00:00:15.0
+video where I explain the basic concepts of regular
+
+6
+00:00:15.1 --> 00:00:17.9
+expressions and I decided to record one.
+
+7
+00:00:18.4 --> 00:00:19.8
+Actually, there are a lot of
+
+8
+00:00:19.8 --> 00:00:22.2
+regular expression resources on the Web.
+
+9
+00:00:22.3 --> 00:00:24.4
+In my opinion, one of the most
+
+10
+00:00:24.5 --> 00:00:27.1
+important regular expression resource on the Web
+
+11
+00:00:27.2 --> 00:00:29.8
+is the http://www.regular-expressions.info Web site.
+
+12
+00:00:30.2 --> 00:00:32.3
+It provides explanation for all
+
+13
+00:00:32.3 --> 00:00:34.4
+basic regular expression constructs.
+
+14
+00:00:34.6 --> 00:00:37.7
+Let's have a look at those basic regex constructs now.
+
+15
+00:00:37.7 --> 00:00:41.4
+A regular expression is some text pattern that
+
+16
+00:00:41.4 --> 00:00:44.0
+can be used to search for specific strings.
+
+17
+00:00:44.9 --> 00:00:48.4
+It can either validate a string, or it can be used
+
+18
+00:00:48.4 --> 00:00:51.8
+to extract a part of a string from a longer string.
+
+19
+00:00:51.9 --> 00:00:54.3
+It can be used to find and replace
+
+20
+00:00:54.4 --> 00:00:56.8
+parts of a string in longer strings.
+
+21
+00:00:57.0 --> 00:00:58.3
+It can also be used to
+
+22
+00:00:58.4 --> 00:01:00.8
+split longer strings into smaller chunks.
+
+23
+00:01:01.9 --> 00:01:03.4
+A regular expression can contain
+
+24
+00:01:03.4 --> 00:01:04.8
+a lot of things inside.
+
+25
+00:01:05.2 --> 00:01:07.8
+Regular expressions can contain regex escapes,
+
+26
+00:01:07.9 --> 00:01:11.9
+quantifiers, character classes, groups lookarounds.
+
+27
+00:01:12.7 --> 00:01:16.8
+Regex escapes are any special sequences of
+
+28
+00:01:16.8 --> 00:01:19.7
+a literal backslash and a character.
+
+29
+00:01:20.7 --> 00:01:24.3
+For example, zero-width assertions like
+
+30
+00:01:24.3 --> 00:01:26.2
+word boundaries or anchors.
+
+31
+00:01:27.1 --> 00:01:31.5
+Backreferences are also an example of regex escapes.
+
+32
+00:01:31.7 --> 00:01:34.5
+They can be numbered or named.
+
+33
+00:01:35.5 --> 00:01:37.7
+Special characters are also regex
+
+34
+00:01:37.7 --> 00:01:41.4
+escapes, hexadecimal escapes, shorthand character
+
+35
+00:01:41.5 --> 00:01:45.2
+classes, Unicode code points, etc.
+
+36
+00:01:45.7 --> 00:01:48.8
+These topics are very broad, and we can
+
+37
+00:01:48.9 --> 00:01:52.0
+devote a specific video for each of them.
+
+38
+00:01:52.2 --> 00:01:53.8
+At this point, I would like to
+
+39
+00:01:53.9 --> 00:01:58.4
+briefly show the use of these constructs.
+
+40
+00:01:58.4 --> 00:02:01.9
+For example, word boundaries can be used to
+
+41
+00:02:01.9 --> 00:02:06.2
+match a whole word like "REGEX", for example.
+
+42
+00:02:06.7 --> 00:02:08.9
+So only whole words are matched.
+
+43
+00:02:09.0 --> 00:02:12.4
+So if you use a "REGEXP", it won't
+
+44
+00:02:12.4 --> 00:02:15.8
+be matched with this regular expression. Anchors,
+
+45
+00:02:15.9 --> 00:02:18.8
+they match the whole line or string.
+
+46
+00:02:18.8 --> 00:02:20.6
+In this case, they match the whole
+
+47
+00:02:20.6 --> 00:02:23.3
+line because of this "m" flag here.
+
+48
+00:02:23.5 --> 00:02:25.8
+So for example, I want to match any
+
+49
+00:02:25.9 --> 00:02:33.1
+line that contains a "META" substring in it.
+
+50
+00:02:33.3 --> 00:02:34.4
+So this is it.
+
+51
+00:02:34.4 --> 00:02:36.5
+Well, we don't need any anchors actually,
+
+52
+00:02:36.6 --> 00:02:39.8
+but they don't make any harm here.
+
+53
+00:02:40.4 --> 00:02:42.2
+Next comes special characters.
+
+54
+00:02:42.3 --> 00:02:44.1
+For example, if you want to match a dot,
+
+55
+00:02:44.1 --> 00:02:46.3
+we must use a backslash and a dot.
+
+56
+00:02:46.4 --> 00:02:48.4
+Otherwise a dot matches any character
+
+57
+00:02:48.5 --> 00:02:50.8
+other than a line break character.
+
+58
+00:02:53.0 --> 00:02:54.7
+So, yes, like this.
+
+59
+00:02:55.3 --> 00:02:58.0
+Now if we talk about hexadecimal escapes,
+
+60
+00:02:58.1 --> 00:03:00.6
+we can use them like this.
+
+61
+00:03:00.6 --> 00:03:06.7
+For example, this \x20 matches a space or this \x0A
+
+62
+00:03:06.8 --> 00:03:09.1
+matches line breaks.
+
+63
+00:03:09.5 --> 00:03:10.8
+You can see here.
+
+64
+00:03:11.8 --> 00:03:15.1
+Shorthand character classes are very well-known
+
+65
+00:03:15.3 --> 00:03:19.2
+constructs like "\d" to match a digit or
+
+66
+00:03:19.3 --> 00:03:23.4
+"\w" to match any word character
+
+67
+00:03:23.6 --> 00:03:26.6
+or "\s" that matches a whitespace.
+
+68
+00:03:27.1 --> 00:03:30.4
+The usage of Unicode code points in regular expressions depends
+
+69
+00:03:30.5 --> 00:03:35.1
+on the regex flavor, and if we select PCRE here,
+
+70
+00:03:35.3 --> 00:03:44.2
+we might use this patten to match a Polish letter "ł".
+
+71
+00:03:47.0 --> 00:03:52.0
+This regex escape will match
+
+72
+00:03:52.0 --> 00:03:56.6
+an emoji in a Python regex flavor. Here.
+
+73
+00:03:58.3 --> 00:04:01.8
+The backreferences are special constructs that
+
+74
+00:04:01.9 --> 00:04:04.2
+let us refer to the part of
+
+75
+00:04:04.2 --> 00:04:06.9
+the regular expression that was captured.
+
+76
+00:04:07.3 --> 00:04:09.6
+Capturing is done with capturing groups.
+
+77
+00:04:09.7 --> 00:04:11.3
+For example, we can use a
+
+78
+00:04:11.4 --> 00:04:13.8
+backreference inside a pattern.
+
+79
+00:04:14.0 --> 00:04:18.8
+For example, when we match "abc" and use
+
+80
+00:04:19.0 --> 00:04:25.7
+"\1", we want to match this pattern.
+
+81
+00:04:25.8 --> 00:04:28.2
+Actually, this is not a good
+
+82
+00:04:28.2 --> 00:04:32.5
+example because "abc" is a literal.
+
+83
+00:04:32.6 --> 00:04:34.3
+If we do not use a literal
+
+84
+00:04:34.4 --> 00:04:37.0
+it becomes a lot more interesting.
+
+85
+00:04:37.2 --> 00:04:40.9
+For example, this pattern matches any digit and
+
+86
+00:04:40.9 --> 00:04:44.5
+then the same digit right after it. Like
+
+87
+00:04:44.5 --> 00:04:47.8
+here, we match a zero and another zero.
+
+88
+00:04:47.8 --> 00:04:50.8
+Here, we do not match zero and
+
+89
+00:04:50.9 --> 00:04:52.9
+one because one is not zero.
+
+90
+00:04:54.2 --> 00:04:57.1
+Groups can be capturing (those that can be
+
+91
+00:04:57.2 --> 00:05:01.8
+referred to using backreferences) or non-capturing (those
+
+92
+00:05:01.8 --> 00:05:04.0
+that are used to group several patterns with
+
+93
+00:05:04.1 --> 00:05:06.5
+an OR "|" operator or when a whole sequence
+
+94
+00:05:06.6 --> 00:05:09.7
+of patterns needs to be quantified, or repeated.
+
+95
+00:05:10.1 --> 00:05:14.3
+Capturing groups can be numbered when they are used like
+
+96
+00:05:14.4 --> 00:05:20.4
+this or named when they are named this way.
+
+97
+00:05:21.2 --> 00:05:22.9
+Capturing groups are defined with a pair
+
+98
+00:05:23.0 --> 00:05:26.7
+of unescaped parentheses and non-capturing groups are
+
+99
+00:05:26.7 --> 00:05:31.7
+defined with open and close parentheses and
+
+100
+00:05:31.9 --> 00:05:35.0
+the open parenthesis is followed directly with
+
+101
+00:05:35.1 --> 00:05:37.6
+a question mark and a colon symbol.
+
+102
+00:05:37.9 --> 00:05:39.5
+We'll discuss more regex basic
+
+103
+00:05:39.5 --> 00:05:41.2
+constructs in the next video.
+
+104
+00:05:41.4 --> 00:05:44.1
+If you liked my video please click "Like" and subscribe
+
+105
+00:05:44.1 --> 00:05:45.8
+to my channel if you haven't done it yet.
+
+106
+00:05:45.9 --> 00:05:47.6
+Thank you for watching and happy regexing.
