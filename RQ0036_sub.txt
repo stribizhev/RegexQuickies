@@ -1,0 +1,267 @@
+1
+00:00:04.4 --> 00:00:04.7
+Hello.
+
+2
+00:00:04.7 --> 00:00:06.1
+In this video we are going to speak
+
+3
+00:00:06.1 --> 00:00:09.9
+about why consecutive lookarounds sometimes do not work.
+
+4
+00:00:10.3 --> 00:00:14.6
+Note that lookarounds are zero-width assertions, and when
+
+5
+00:00:14.6 --> 00:00:18.5
+the patterns are matched, the regex index stays at
+
+6
+00:00:18.5 --> 00:00:20.9
+the same place where it has been before.
+
+7
+00:00:21.7 --> 00:00:23.9
+The lookarounds and the patterns above
+
+8
+00:00:24.0 --> 00:00:26.0
+are executed at the same locations.
+
+9
+00:00:26.7 --> 00:00:30.9
+Note that in this regular expression, the lookaheads
+
+10
+00:00:30.9 --> 00:00:34.8
+are executed at the same location, namely at
+
+11
+00:00:34.8 --> 00:00:37.4
+the beginning of the string or a line.
+
+12
+00:00:37.5 --> 00:00:39.9
+(because we're using the "m" flag here.)
+
+13
+00:00:39.9 --> 00:00:45.3
+This regular expression doesn't match the first string "bana12", but
+
+14
+00:00:45.3 --> 00:00:48.3
+it matches the second string, "12bana".
+
+15
+00:00:48.5 --> 00:00:52.4
+The reason is the first lookahead requires at least
+
+16
+00:00:52.4 --> 00:00:55.8
+five characters to appear right at the beginning of
+
+17
+00:00:55.8 --> 00:01:00.8
+the line, and the next lookahead requires two digits to
+
+18
+00:01:00.8 --> 00:01:04.1
+appear again at the beginning of the line.
+
+19
+00:01:04.3 --> 00:01:06.9
+Looking at the second string, we can see the two
+
+20
+00:01:06.9 --> 00:01:11.2
+digits at the beginning of the line, and there are
+
+21
+00:01:11.2 --> 00:01:14.1
+no two digits at the beginning of the first line here.
+
+22
+00:01:14.5 --> 00:01:16.5
+Hence, there is no match.
+
+23
+00:00:52.4 --> 00:00:55.8
+five characters to appear right at the beginning of
+
+24
+00:00:55.8 --> 00:01:00.8
+the line, and the next lookahead requires two digits to
+
+25
+00:01:00.8 --> 00:01:04.1
+appear again at the beginning of the line.
+
+26
+00:01:04.3 --> 00:01:06.9
+Looking at the second string, we can see the two
+
+27
+00:01:06.9 --> 00:01:11.2
+digits at the beginning of the line, and there are
+
+28
+00:01:11.2 --> 00:01:14.1
+no two digits at the beginning of the first line here.
+
+29
+00:01:14.5 --> 00:01:16.5
+Hence, there is no match.
+
+30
+00:01:17.0 --> 00:01:19.8
+So, in order to match the first string,
+
+31
+00:01:19.9 --> 00:01:25.1
+we must ensure that the second lookaround matches any
+
+32
+00:01:25.2 --> 00:01:32.6
+characters other than digits before the two digits, or
+
+33
+00:01:32.8 --> 00:01:37.7
+if there can be any one-digit chunks before this value,
+
+34
+00:01:37.7 --> 00:01:43.5
+we can just use a ".*" pattern.
+
+35
+00:01:44.2 --> 00:01:45.5
+Let's have a look.
+
+36
+00:01:49.0 --> 00:01:50.5
+This works like this.
+
+37
+00:01:50.9 --> 00:01:53.7
+You can learn more about this lookaround behavior
+
+38
+00:01:53.8 --> 00:01:57.3
+if you read the "Lookarounds Stand their Ground" article.
+
+39
+00:02:00.1 --> 00:02:01.2
+Have a look.
+
+40
+00:02:01.8 --> 00:02:04.3
+"Lookahead and lookbehind don't mean
+
+41
+00:02:04.4 --> 00:02:06.6
+«look way ahead into the distance».
+
+42
+00:02:06.8 --> 00:02:09.5
+They mean «look at the text immediately
+
+43
+00:02:09.6 --> 00:02:11.4
+to the left or to the right».
+
+44
+00:02:11.6 --> 00:02:13.6
+If you want to inspect a piece of string
+
+45
+00:02:13.6 --> 00:02:17.2
+further down, you will need to insert binoculars inside
+
+46
+00:02:17.3 --> 00:02:19.4
+the lookahead to get you to the part
+
+47
+00:01:50.9 --> 00:01:53.7
+You can learn more about this lookaround behavior
+
+48
+00:01:53.8 --> 00:01:57.3
+if you read the "Lookarounds Stand their Ground" article.
+
+49
+00:02:00.1 --> 00:02:01.2
+Have a look.
+
+50
+00:02:01.8 --> 00:02:04.3
+"Lookahead and lookbehind don't mean
+
+51
+00:02:04.4 --> 00:02:06.6
+«look way ahead into the distance».
+
+52
+00:02:06.8 --> 00:02:09.5
+They mean «look at the text immediately
+
+53
+00:02:09.6 --> 00:02:11.4
+to the left or to the right».
+
+54
+00:02:11.6 --> 00:02:13.6
+If you want to inspect a piece of string
+
+55
+00:02:13.6 --> 00:02:17.2
+further down, you will need to insert binoculars inside
+
+56
+00:02:17.3 --> 00:02:19.4
+the lookahead to get you to the part
+
+57
+00:02:19.4 --> 00:02:21.9
+of the string you want to inspect, for instance
+
+58
+00:02:22.0 --> 00:02:25.9
+a ".*" or ideally more specific tokens."
+
+59
+00:02:26.3 --> 00:02:30.2
+And this is exactly what we used in our example here.
+
+60
+00:02:30.6 --> 00:02:32.9
+So it can be either a non digit
+
+61
+00:02:33.0 --> 00:02:37.4
+matching pattern or a ".*" pattern.
+
+62
+00:02:38.4 --> 00:02:40.7
+You can check the pattern meaning on the right,
+
+63
+00:02:40.8 --> 00:02:43.1
+you can get a broader picture of the problem
+
+64
+00:02:43.2 --> 00:02:45.6
+if you follow the links in the FURTHER LINKS section,
+
+65
+00:02:45.8 --> 00:02:47.7
+and if you liked my video, please click "Like" and
+
+66
+00:02:47.8 --> 00:02:49.8
+subscribe to my channel if you haven't done yet.
+
+67
+00:02:50.0 --> 00:02:51.9
+Thank you for watching and happy regexing.
