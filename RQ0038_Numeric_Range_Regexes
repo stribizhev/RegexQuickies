@@ -1,0 +1,247 @@
+1
+00:00:04.5 --> 00:00:04.8
+Hello.
+
+2
+00:00:04.9 --> 00:00:06.5
+Today we are going to speak about how
+
+3
+00:00:06.5 --> 00:00:09.8
+to match custom numeric ranges with regular expressions.
+
+4
+00:00:10.5 --> 00:00:13.4
+In the previous video, we have spoken about
+
+5
+00:00:13.5 --> 00:00:16.9
+matching numeric ranges with the regular expressions that
+
+6
+00:00:16.9 --> 00:00:20.7
+are generated with numerical range regex regenerator.
+
+7
+00:00:20.8 --> 00:00:22.4
+Today we're going to speak how
+
+8
+00:00:22.4 --> 00:00:25.1
+to build such regular expressions manually.
+
+9
+00:00:25.3 --> 00:00:27.1
+So, first things first.
+
+10
+00:00:27.2 --> 00:00:30.5
+If you want to match a range from
+
+11
+00:00:30.5 --> 00:00:35.1
+0 to 60, you can't just write this.
+
+12
+00:00:35.2 --> 00:00:38.0
+Because this regular expression matches any
+
+13
+00:00:38.1 --> 00:00:40.1
+digits from zero to six.
+
+14
+00:00:40.3 --> 00:00:43.0
+It's the same as this.
+
+15
+00:00:44.0 --> 00:00:48.3
+Now, if you want to match a range
+
+16
+00:00:48.3 --> 00:00:57.0
+of numbers from 0 to 1, you
+
+17
+00:00:57.0 --> 00:01:03.8
+can use a regular expression like this.
+
+18
+00:01:03.9 --> 00:01:06.7
+Of course, you should anchor the expression
+
+19
+00:01:06.8 --> 00:01:08.1
+if you want to match
+
+20
+00:01:08.2 --> 00:01:12.5
+a standalone number, something like this.
+
+21
+00:01:12.7 --> 00:01:15.6
+Of course, we can use a non-capturing group here.
+
+22
+00:01:16.2 --> 00:01:18.8
+Note that many regular expression flavors
+
+23
+00:01:18.9 --> 00:01:24.1
+support "\d" construct, or shorthand character
+
+24
+00:01:24.2 --> 00:01:26.3
+class that matches any digit.
+
+25
+00:01:26.4 --> 00:01:29.3
+So you can safely replace a bracket
+
+26
+00:01:29.4 --> 00:01:31.9
+expression with this shorthand character class.
+
+27
+00:01:32.5 --> 00:01:34.2
+Now, a lot of people usually
+
+28
+00:01:34.2 --> 00:01:36.8
+want to match fractional parts.
+
+29
+00:01:37.1 --> 00:01:39.7
+And that means we need to add
+
+30
+00:01:41.0 --> 00:01:44.2
+an optional capturing group like this.
+
+31
+00:01:44.5 --> 00:01:46.9
+It is not the correct regular expression to
+
+32
+00:01:47.0 --> 00:01:49.6
+match the numbers from 0 to 100
+
+33
+00:01:49.8 --> 00:01:56.0
+because here we can also match 100.55.
+
+34
+00:01:57.3 --> 00:02:00.1
+In order to fix this, we need to
+
+35
+00:02:00.2 --> 00:02:09.3
+move this optional group here and allow any
+
+36
+00:02:09.5 --> 00:02:15.2
+zeros after a dot when matching 100.
+
+37
+00:02:16.2 --> 00:02:22.7
+Now we can safely match 100.0000.
+
+38
+00:02:24.1 --> 00:02:26.5
+What if you want to match any number
+
+39
+00:02:26.5 --> 00:02:31.0
+from 0 to 100, excluding only zeros?
+
+40
+00:02:31.5 --> 00:02:35.3
+We can simply add a lookahead at the beginning.
+
+41
+00:02:42.5 --> 00:02:45.2
+As you see, we have excluded zero.
+
+42
+00:02:47.2 --> 00:02:50.9
+What if we want to match a numeric range
+
+43
+00:02:51.0 --> 00:02:53.9
+where we only want to set the minimum value?
+
+44
+00:02:54.4 --> 00:02:57.2
+Now let's match numbers that are
+
+45
+00:02:57.2 --> 00:03:00.3
+equal or greater than 10,000.
+
+46
+00:03:01.2 --> 00:03:05.7
+In this case, you can easily see that 10,000
+
+47
+00:03:05.8 --> 00:03:09.9
+contains five digits and the first digit is "1".
+
+48
+00:03:10.1 --> 00:03:13.7
+It may be "2" or "3" or "4"... up to "9".
+
+49
+00:03:17.5 --> 00:03:25.7
+We matched numbers from 10,000 to 99,999.
+
+50
+00:03:26.7 --> 00:03:29.0
+Now we need to add an alternative that will
+
+51
+00:03:29.0 --> 00:03:33.1
+match numbers that are larger than this number.
+
+52
+00:03:33.3 --> 00:03:36.2
+So we need an alternative here.
+
+53
+00:03:36.4 --> 00:03:41.6
+So we are adding an alternation operator and then we
+
+54
+00:03:41.6 --> 00:03:48.2
+match any numbers that contain six or more digits.
+
+55
+00:03:49.9 --> 00:03:51.4
+So, this is it.
+
+56
+00:03:52.0 --> 00:03:54.5
+You can see the pattern explanation on the right,
+
+57
+00:03:54.7 --> 00:03:57.0
+you can find more regular expressions like this if
+
+58
+00:03:57.0 --> 00:04:00.3
+you visit the links in the "FURTHER LINKS" section,
+
+59
+00:04:00.4 --> 00:04:01.9
+and if you liked my video, please
+
+60
+00:04:01.9 --> 00:04:03.8
+click "Like" and subscribe to my channel
+
+61
+00:04:03.8 --> 00:04:04.9
+if you haven't done it yet.
+
+62
+00:04:05.1 --> 00:04:07.0
+Thank you for watching and happy regexing.
