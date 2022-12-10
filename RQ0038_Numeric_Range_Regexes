@@ -20,7 +20,7 @@ matching numeric ranges with the regular expressions that
 
 6
 00:00:16.9 --> 00:00:20.7
-are generated with numerical range regex regenerator.
+are generated with numerical range regex generator.
 
 7
 00:00:20.8 --> 00:00:22.4
@@ -60,7 +60,7 @@ Now, if you want to match a range
 
 16
 00:00:48.3 --> 00:00:57.0
-of numbers from 0 to 1, you
+of numbers from 0 to 100, you
 
 17
 00:00:57.0 --> 00:01:03.8
